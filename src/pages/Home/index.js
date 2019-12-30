@@ -1,7 +1,7 @@
 import React from "react";
-
+import Sidebar from "../components/Sidebar";
 // import { Container } from './styles';
 
 export default function Home() {
-  return <h1>Home</h1>;
+  return <Sidebar />;
 }
