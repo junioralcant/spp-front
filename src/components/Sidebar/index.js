@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 //import { logout } from "../../services/auth";
 import { Container, Sair, Nav } from "./styles";
 
@@ -15,38 +16,38 @@ export default function Sidebar() {
             <strong>Cadastro</strong>
           </li>
           <li>
-            <a href="/">Cad Funcionario</a>
+            <Link to="/cadfuncionario">Cad Funcionario</Link>
           </li>
           <li>
-            <a href="/financeiro">Cad Encarregado</a>
-          </li>
-
-          <li>
-            <a href="/produto">Cad Linha</a>
+            <Link to="/financeiro">Cad Encarregado</Link>
           </li>
 
           <li>
-            <a href="/produto">Cad Hotel</a>
+            <Link to="/produto">Cad Linha</Link>
           </li>
 
           <li>
-            <a href="/produto">Cad Loja</a>
+            <Link to="/produto">Cad Hotel</Link>
           </li>
 
           <li>
-            <a href="/produto">Cad Restaurante</a>
+            <Link to="/produto">Cad Loja</Link>
           </li>
 
           <li>
-            <a href="/produto">Cad Posto</a>
+            <Link to="/produto">Cad Restaurante</Link>
           </li>
 
           <li>
-            <a href="/produto">Cad Proprietário</a>
+            <Link to="/produto">Cad Posto</Link>
           </li>
 
           <li>
-            <a href="/produto">Cad Veiculo</a>
+            <Link to="/produto">Cad Proprietário</Link>
+          </li>
+
+          <li>
+            <Link to="/produto">Cad Veiculo</Link>
           </li>
         </Nav>
 
@@ -55,30 +56,30 @@ export default function Sidebar() {
             <strong>Listagem</strong>
           </li>
           <li>
-            <a href="/">Funcionarios</a>
+            <Link to="/">Funcionarios</Link>
           </li>
 
           <li>
-            <a href="/produto">Linha</a>
+            <Link to="/produto">Linha</Link>
           </li>
 
           <li>
-            <a href="/financeiro">Encarregado</a>
+            <Link to="/financeiro">Encarregado</Link>
           </li>
           <li>
-            <a href="/produto">Hotel</a>
-          </li>
-
-          <li>
-            <a href="/produto">Loja</a>
+            <Link to="/produto">Hotel</Link>
           </li>
 
           <li>
-            <a href="/produto">Posto</a>
+            <Link to="/produto">Loja</Link>
           </li>
 
           <li>
-            <a href="/produto">Restaurante</a>
+            <Link to="/produto">Posto</Link>
+          </li>
+
+          <li>
+            <Link to="/produto">Restaurante</Link>
           </li>
         </Nav>
 
@@ -87,19 +88,19 @@ export default function Sidebar() {
             <strong>Notas</strong>
           </li>
           <li>
-            <a href="/produto">Hotel</a>
+            <Link to="/produto">Hotel</Link>
           </li>
 
           <li>
-            <a href="/produto">Loja</a>
+            <Link to="/produto">Loja</Link>
           </li>
 
           <li>
-            <a href="/produto">Posto</a>
+            <Link to="/produto">Posto</Link>
           </li>
 
           <li>
-            <a href="/produto">Restaurante</a>
+            <Link to="/produto">Restaurante</Link>
           </li>
         </Nav>
       </div>
