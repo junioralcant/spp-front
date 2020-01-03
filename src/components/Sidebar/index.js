@@ -19,7 +19,7 @@ export default function Sidebar() {
             <Link to="/cadfuncionario">Cad Funcionario</Link>
           </li>
           <li>
-            <Link to="/financeiro">Cad Encarregado</Link>
+            <Link to="/cadencarregado">Cad Encarregado</Link>
           </li>
 
           <li>

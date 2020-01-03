@@ -7,13 +7,15 @@ export const Container = styled.div`
 
   h1 {
     font-size: 15pt;
-    margin: 20px 150px;
+    margin: 20px 125px;
   }
 
   form {
     div.buttons {
+      display: flex;
+      align-items: center;
       button {
-        margin: 20px 150px;
+        margin: 20px 126px;
         height: 44px;
         width: 120px;
         font-size: 18px;
@@ -43,6 +45,7 @@ export const ContentForm = styled.div`
   display: flex;
   justify-content: center;
   width: 150vh;
+  align-items: center;
 
   > div {
     display: flex;
@@ -64,21 +67,11 @@ export const ContentForm = styled.div`
         border-color: #7289da;
       }
     }
+  }
 
-    > select {
-      height: 40px;
-      padding: 10px;
-      border-radius: 3px;
-      border: 1px solid rgba(0, 0, 0, 0.3);
-      background-color: rgba(0, 0, 0, 0.1);
-      color: #f6f6f6;
-      margin-top: 8px;
-      transition: border 0.15s ease;
-      font-size: 16px;
-      &:focus {
-        border-color: #7289da;
-        color: #000;
-      }
+  div.select {
+    span {
+      margin-bottom: 7px;
     }
   }
 `;

@@ -9,7 +9,7 @@ import Sidebar from "../../components/Sidebar";
 import api from "../../services/api";
 import estados from "../../services/estados";
 
-export default function ListFuncionario({ history, match }) {
+export default function CadFuncionario({ history, match }) {
   const [data, setData] = useState({});
 
   async function handlerSubmit(data) {
@@ -22,7 +22,7 @@ export default function ListFuncionario({ history, match }) {
           await api.postOrPut("/funcionarios", match.params.id, data);
           toastr.success(`Funcionários cadastrado com sucesso!
           `);
-          setTimeout(() => history.go(0), 2000);
+          setTimeout(() => history.go(0), 1000);
         } catch (error) {
           toastr.error(error.response.data.error);
         }
@@ -32,7 +32,7 @@ export default function ListFuncionario({ history, match }) {
         await api.postOrPut("/funcionarios", match.params.id, data);
         toastr.success(`Alteração feita com sucesso!
         `);
-        setTimeout(() => history.push("/"), 2000);
+        history.push("/");
       } catch (error) {
         toastr.error(error.response.data.error);
       }
@@ -110,7 +110,18 @@ export default function ListFuncionario({ history, match }) {
             <Input name="pis" label="PIS" />
           </div>
         </ContentForm>
-        <button type="submit">Salvar</button>
+        <div className="buttons">
+          <button type="submit">Salvar</button>
+          {match.params.id && (
+            <button
+              onClick={() => history.push("/funcionario")}
+              className="canceled"
+              type="submit"
+            >
+              Cancelar
+            </button>
+          )}
+        </div>
       </Form>
     </Container>
   );
