@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import Home from "./pages/Home";
 import CadFuncionario from "./pages/CadFuncionario";
 import CadEncarregado from "./pages/CadEncarregado";
+import CadLinha from "./pages/CadLinha";
 
 const Routes = () => (
   <BrowserRouter>
@@ -14,6 +15,8 @@ const Routes = () => (
       <Route path="/cadfuncionario/:id" component={CadFuncionario} />
       <Route exact path="/cadencarregado" component={CadEncarregado} />
       <Route path="/cadencarregado/:id" component={CadEncarregado} />
+      <Route exact path="/cadlinha" component={CadLinha} />
+      <Route path="/cadlinha/:id" component={CadLinha} />
 
       {/* <PrivateRoute path="/" exact component={Main} />
       <PrivateRoute path="/financeiro" component={Financeiro} />

@@ -3,7 +3,7 @@ const dot = (color = "#ccc") => ({
   display: "flex",
   padding: 10,
   maxHeight: 25,
-  width: "50vh",
+  width: "40vh",
   borderRadius: 3,
   color: "#fff",
   marginTop: 0,

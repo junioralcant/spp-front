@@ -7,14 +7,16 @@ export const Container = styled.div`
 
   h1 {
     font-size: 15pt;
-    margin: 20px 150px;
+    margin: 2% 16%;
   }
 
   form {
     div.buttons {
+      display: flex;
+      align-items: center;
       button {
-        margin: 20px 150px;
         height: 44px;
+        margin: 1% 17%;
         width: 120px;
         font-size: 18px;
         background: #7289da;

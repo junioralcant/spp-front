@@ -70,8 +70,12 @@ export const ContentForm = styled.div`
   }
 
   div.select {
-    span {
-      margin-bottom: 7px;
+    > span {
+      margin-bottom: 20px;
+    }
+
+    div.css-2b097c-container {
+      margin-top: 8px;
     }
   }
 `;

@@ -80,10 +80,10 @@ export default function CadFuncionario({ history, match }) {
             <Input name="whatsapp" label="Whatsapp" />
 
             <Input name="email" type="email" label="Email" />
+
+            <Input name="endereco" label="Endereço" />
           </div>
           <div>
-            <Input name="endereco" label="Endereço" />
-
             <Input name="bairro" label="Bairro" />
 
             <Input name="cidade" label="Cidade" />

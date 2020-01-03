@@ -23,7 +23,7 @@ export default function Sidebar() {
           </li>
 
           <li>
-            <Link to="/produto">Cad Linha</Link>
+            <Link to="/cadlinha">Cad Linha</Link>
           </li>
 
           <li>
