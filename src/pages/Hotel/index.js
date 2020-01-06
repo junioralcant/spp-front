@@ -9,18 +9,29 @@ import Sidebar from "../../components/Sidebar";
 import api from "../../services/api";
 import estados from "../../services/estados";
 
-export default function CadFuncionario({ history, match }) {
+export default function CadHotel({ history, match }) {
   const [data, setData] = useState({});
 
   async function handlerSubmit(data) {
     if (!match.params.id) {
-      if (!data.nome) {
+      if (
+        !data.nome ||
+        !data.proprietario ||
+        !data.cnpj ||
+        !data.endereco ||
+        !data.cidade ||
+        !data.bairro ||
+        !data.estado ||
+        !data.numeroCasa ||
+        !data.cep ||
+        !data.telefone
+      ) {
         toastr.error(`Preencha todos os campos obrigatórios (*)!
         `);
       } else {
         try {
-          await api.postOrPut("/funcionarios", match.params.id, data);
-          toastr.success(`Funcionários cadastrado com sucesso!
+          await api.postOrPut("/hotels", match.params.id, data);
+          toastr.success(`Hotel cadastrado com sucesso!
           `);
           setTimeout(() => history.go(0), 1000);
         } catch (error) {
@@ -29,7 +40,7 @@ export default function CadFuncionario({ history, match }) {
       }
     } else {
       try {
-        await api.postOrPut("/funcionarios", match.params.id, data);
+        await api.postOrPut("/hotels", match.params.id, data);
         toastr.success(`Alteração feita com sucesso!
         `);
         history.push("/");
@@ -39,11 +50,12 @@ export default function CadFuncionario({ history, match }) {
     }
   }
 
+  //update
   useEffect(() => {
     async function loadData() {
       if (match.params.id) {
         const { id } = match.params;
-        const response = await api.get(`/funcionarios/${id}`);
+        const response = await api.get(`/hotels/${id}`);
 
         setData(response.data);
       }
@@ -58,63 +70,34 @@ export default function CadFuncionario({ history, match }) {
     <Container>
       <Sidebar />
       <Form initialData={data} onSubmit={handlerSubmit}>
-        <h1>Cadastro de Funcionários</h1>
+        <h1>Cadastro de Hotel</h1>
         <ContentForm>
           <div>
-            <Input name="nome" label="Nome" />
-
-            <Input name="rg" label="RG" />
-
-            <Input name="cpf" label="CPF" />
-
-            <Input name="cnh" label="CNH" />
-
-            <Input type="date" name="dataNascimento" label="Data Nascimento" />
-
-            <Input type="date" name="dataAdmissao" label="Data Admissão" />
-
-            <Input name="cargo" label="Cargo" />
-
-            <Input name="telefone" label="Telefone" />
-
-            <Input name="whatsapp" label="Whatsapp" />
-
-            <Input name="email" type="email" label="Email" />
-
-            <Input name="endereco" label="Endereço" />
+            <Input name="nome" label="Nome do Hotel *" />
+            <Input name="proprietario" label="Nome do Proprietário *" />
+            <Input name="cnpj" label="CNPJ*" />
+            <Input name="endereco" label="Endereco*" />
+            <Input name="bairro" label="Bairro *" />
+            <Input name="cidade" label="Cidade *" />
           </div>
           <div>
-            <Input name="bairro" label="Bairro" />
-
-            <Input name="cidade" label="Cidade" />
-
             <Select
               name="estado"
               options={estados}
               value={data.estado}
               label="Estado"
             />
-
-            <Input name="cep" label="CEP" />
-
-            <Input name="salarioFixo" label="Salário Fixo" />
-
-            <Input name="agenciaBancaria" label="Agência Bancária" />
-
-            <Input name="contaBancaria" label="Conta Bancária" />
-
-            <Input name="tipoConta" label="Tipo de Conta" />
-
-            <Input name="banco" label="Banco" />
-
-            <Input name="pis" label="PIS" />
+            <Input name="numeroCasa" label="Número do Hotel *" />
+            <Input name="cep" label="CEP *" />
+            <Input name="telefone" label="Telefone *" />
+            <Input name="whatsapp" label="Whatsapp" />
           </div>
         </ContentForm>
         <div className="buttons">
           <button type="submit">Salvar</button>
           {match.params.id && (
             <button
-              onClick={() => history.push("/funcionario")}
+              onClick={() => history.push("/hotel")}
               className="canceled"
               type="submit"
             >

@@ -4,7 +4,7 @@ import Select from "react-select";
 import toastr from "toastr";
 import "toastr/build/toastr.min.css";
 
-import { Container, ContentForm } from "./styles";
+import { Container, ContentForm } from "../../styles/form";
 import Sidebar from "../../components/Sidebar";
 import { colorStyle } from "../../styles/select";
 
