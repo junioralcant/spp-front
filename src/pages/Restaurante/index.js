@@ -97,7 +97,7 @@ export default function CadHotel({ history, match }) {
           <button type="submit">Salvar</button>
           {match.params.id && (
             <button
-              onClick={() => history.push("/loja")}
+              onClick={() => history.push("/restaurante")}
               className="canceled"
               type="submit"
             >
