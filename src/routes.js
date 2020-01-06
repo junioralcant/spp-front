@@ -6,6 +6,7 @@ import CadFuncionario from "./pages/CadFuncionario";
 import CadEncarregado from "./pages/CadEncarregado";
 import CadLinha from "./pages/CadLinha";
 import CadHotel from "./pages/Hotel";
+import CadLoja from "./pages/Loja";
 
 const Routes = () => (
   <BrowserRouter>
@@ -20,6 +21,8 @@ const Routes = () => (
       <Route path="/cadlinha/:id" component={CadLinha} />
       <Route exact path="/cadhotel" component={CadHotel} />
       <Route path="/cadhotel/:id" component={CadHotel} />
+      <Route exact path="/cadloja" component={CadLoja} />
+      <Route path="/cadloja/:id" component={CadLoja} />
 
       {/* <PrivateRoute path="/" exact component={Main} />
       <PrivateRoute path="/financeiro" component={Financeiro} />
