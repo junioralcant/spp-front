@@ -47,7 +47,7 @@ export default function Sidebar() {
           </li>
 
           <li>
-            <Link to="/produto">Cad Veiculo</Link>
+            <Link to="/cadveiculo">Cad Veiculo</Link>
           </li>
         </Nav>
 
