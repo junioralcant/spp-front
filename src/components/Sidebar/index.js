@@ -35,7 +35,7 @@ export default function Sidebar() {
           </li>
 
           <li>
-            <Link to="/produto">Cad Restaurante</Link>
+            <Link to="/cadrestaurante">Cad Restaurante</Link>
           </li>
 
           <li>
