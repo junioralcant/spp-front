@@ -125,7 +125,7 @@ export default function CadLinha({ history, match }) {
           <button type="submit">Salvar</button>
           {match.params.id && (
             <button
-              onClick={() => history.push("/encarregado")}
+              onClick={() => history.push("/linha")}
               className="canceled"
               type="submit"
             >

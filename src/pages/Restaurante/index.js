@@ -9,7 +9,7 @@ import Sidebar from "../../components/Sidebar";
 import api from "../../services/api";
 import estados from "../../services/estados";
 
-export default function CadHotel({ history, match }) {
+export default function CadRestaurante({ history, match }) {
   const [data, setData] = useState({});
 
   async function handlerSubmit(data) {

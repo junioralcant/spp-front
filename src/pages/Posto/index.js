@@ -9,14 +9,13 @@ import Sidebar from "../../components/Sidebar";
 import api from "../../services/api";
 import estados from "../../services/estados";
 
-export default function CadLoja({ history, match }) {
+export default function CadPosto({ history, match }) {
   const [data, setData] = useState({});
 
   async function handlerSubmit(data) {
     if (!match.params.id) {
       if (
         !data.nome ||
-        !data.proprietario ||
         !data.cnpj ||
         !data.endereco ||
         !data.cidade ||
@@ -30,8 +29,8 @@ export default function CadLoja({ history, match }) {
         `);
       } else {
         try {
-          await api.postOrPut("/lojas", match.params.id, data);
-          toastr.success(`Loja cadastrada com sucesso!
+          await api.postOrPut("/postos", match.params.id, data);
+          toastr.success(`Posto cadastrada com sucesso!
           `);
           setTimeout(() => history.go(0), 1000);
         } catch (error) {
@@ -40,7 +39,7 @@ export default function CadLoja({ history, match }) {
       }
     } else {
       try {
-        await api.postOrPut("/lojas", match.params.id, data);
+        await api.postOrPut("/postos", match.params.id, data);
         toastr.success(`Alteração feita com sucesso!
         `);
         history.push("/");
@@ -55,7 +54,7 @@ export default function CadLoja({ history, match }) {
     async function loadData() {
       if (match.params.id) {
         const { id } = match.params;
-        const response = await api.get(`/lojas/${id}`);
+        const response = await api.get(`/postos/${id}`);
 
         setData(response.data);
       }
@@ -70,11 +69,10 @@ export default function CadLoja({ history, match }) {
     <Container>
       <Sidebar />
       <Form initialData={data} onSubmit={handlerSubmit}>
-        <h1>Cadastro de Loja</h1>
+        <h1>Cadastro de Posto</h1>
         <ContentForm>
           <div>
-            <Input name="nome" label="Nome da Loja *" />
-            <Input name="proprietario" label="Nome do Proprietário *" />
+            <Input name="nome" label="Nome do Posto *" />
             <Input name="cnpj" label="CNPJ*" />
             <Input name="endereco" label="Endereco*" />
             <Input name="bairro" label="Bairro *" />
@@ -87,7 +85,7 @@ export default function CadLoja({ history, match }) {
               value={data.estado}
               label="Estado"
             />
-            <Input name="numeroCasa" label="Número da Loja *" />
+            <Input name="numeroCasa" label="Número do Posto *" />
             <Input name="cep" label="CEP *" />
             <Input name="telefone" label="Telefone *" />
             <Input name="whatsapp" label="Whatsapp" />
@@ -97,7 +95,7 @@ export default function CadLoja({ history, match }) {
           <button type="submit">Salvar</button>
           {match.params.id && (
             <button
-              onClick={() => history.push("/loja")}
+              onClick={() => history.push("/posto")}
               className="canceled"
               type="submit"
             >
