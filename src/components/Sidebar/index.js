@@ -56,7 +56,7 @@ export default function Sidebar() {
             <strong>Listagem</strong>
           </li>
           <li>
-            <Link to="/">Funcionarios</Link>
+            <Link to="/funcionario">Funcionarios</Link>
           </li>
 
           <li>

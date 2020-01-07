@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Form, Input, Select } from "unform";
+import { formatToTimeZone } from "date-fns-timezone";
 import toastr from "toastr";
 import "toastr/build/toastr.min.css";
 
@@ -32,7 +33,7 @@ export default function CadFuncionario({ history, match }) {
         await api.postOrPut("/funcionarios", match.params.id, data);
         toastr.success(`Alteração feita com sucesso!
         `);
-        history.push("/");
+        history.push("/funcionario");
       } catch (error) {
         toastr.error(error.response.data.error);
       }
@@ -53,6 +54,32 @@ export default function CadFuncionario({ history, match }) {
       loadData();
     }
   }, [match.params, match.params.id]);
+
+  useEffect(
+    () => {
+      if (match.params.id) {
+        const birthDate = formatToTimeZone(data.dataNascimento, "YYYY-MM-DD", {
+          timeZone: "Europe/Berlin"
+        });
+
+        const admissionDate = formatToTimeZone(
+          data.dataAdmissao,
+          "YYYY-MM-DD",
+          {
+            timeZone: "Europe/Berlin"
+          }
+        );
+
+        setData({
+          ...data,
+          dataNascimento: birthDate,
+          dataAdmissao: admissionDate
+        });
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [data.dataNascimento, data.dataAdmissao, match.params.id]
+  );
 
   return (
     <Container>
@@ -84,6 +111,8 @@ export default function CadFuncionario({ history, match }) {
             <Input name="endereco" label="Endereço" />
           </div>
           <div>
+            <Input name="numeroCasa" label="Número Casa" />
+
             <Input name="bairro" label="Bairro" />
 
             <Input name="cidade" label="Cidade" />

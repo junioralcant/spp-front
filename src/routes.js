@@ -5,12 +5,14 @@ import Home from "./pages/Home";
 import CadFuncionario from "./pages/CadFuncionario";
 import CadEncarregado from "./pages/CadEncarregado";
 import CadLinha from "./pages/CadLinha";
-import CadHotel from "./pages/Hotel";
-import CadLoja from "./pages/Loja";
-import CadRestaurante from "./pages/Restaurante";
-import CadPosto from "./pages/Posto";
-import CadProprietario from "./pages/Proprietario";
-import CadVeiculo from "./pages/Veiculo";
+import CadHotel from "./pages/CadHotel";
+import CadLoja from "./pages/CadLoja";
+import CadRestaurante from "./pages/CadRestaurante";
+import CadPosto from "./pages/CadPosto";
+import CadProprietario from "./pages/CadProprietario";
+import CadVeiculo from "./pages/CadVeiculo";
+import ListFuncionario from "./pages/ListFuncionario";
+import DetailsFuncionario from "./pages/DetailsFuncionario";
 
 const Routes = () => (
   <BrowserRouter>
@@ -35,6 +37,9 @@ const Routes = () => (
       <Route path="/cadproprietario/:id" component={CadProprietario} />
       <Route exact path="/cadveiculo" component={CadVeiculo} />
       <Route path="/cadveiculo/:id" component={CadVeiculo} />
+      <Route path="/funcionario" component={ListFuncionario} />
+      <Route path="/detailsfuncionario/:id" component={DetailsFuncionario} />
+
       {/* <PrivateRoute path="/" exact component={Main} />
       <PrivateRoute path="/financeiro" component={Financeiro} />
       <PrivateRoute exact path="/produto" component={Produto} />
