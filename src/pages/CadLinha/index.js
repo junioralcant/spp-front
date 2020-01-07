@@ -53,7 +53,7 @@ export default function CadLinha({ history, match }) {
         await api.postOrPut("/linhas", match.params.id, data);
         toastr.success(`Alteração feita com sucesso!
         `);
-        history.push("/");
+        history.push("/linha");
       } catch (error) {
         toastr.error(error.response.data.error);
       }
@@ -86,6 +86,7 @@ export default function CadLinha({ history, match }) {
   function setInCharge(value) {
     setSelectIncharge(value);
   }
+
   return (
     <Container>
       <Sidebar />
@@ -99,12 +100,13 @@ export default function CadLinha({ history, match }) {
 
               <Select
                 options={inCharges}
-                name="funcionario.nome"
                 placeholder={optionsExistents.map(fun => {
                   return fun.name;
                 })}
                 styles={colorStyle}
-                getOptionLabel={incharge => incharge.funcionario.nome}
+                getOptionLabel={incharge =>
+                  !incharge.funcionario ? null : incharge.funcionario.nome
+                }
                 getOptionValue={incharge => incharge._id}
                 onChange={value => setInCharge(value._id)}
               />

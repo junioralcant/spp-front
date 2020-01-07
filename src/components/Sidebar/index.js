@@ -60,7 +60,7 @@ export default function Sidebar() {
           </li>
 
           <li>
-            <Link to="/produto">Linha</Link>
+            <Link to="/linha">Linha</Link>
           </li>
 
           <li>
