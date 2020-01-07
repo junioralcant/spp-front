@@ -46,7 +46,7 @@ export default function CadEncarregado({ history, match }) {
         await api.postOrPut("/encarregados", match.params.id, data);
         toastr.success(`Alteração feita com sucesso!
         `);
-        history.push("/");
+        history.push("/encarregado");
       } catch (error) {
         toastr.error(error.response.data.error);
       }

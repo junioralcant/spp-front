@@ -64,7 +64,7 @@ export default function Sidebar() {
           </li>
 
           <li>
-            <Link to="/financeiro">Encarregado</Link>
+            <Link to="/encarregado">Encarregado</Link>
           </li>
           <li>
             <Link to="/produto">Hotel</Link>

@@ -13,39 +13,39 @@ import {
   Dados
 } from "../../styles/list";
 
-export default function ListLinha({ history }) {
-  const [lines, setLines] = useState([]);
+export default function ListEncarregado({ history }) {
+  const [inCharges, setInCharges] = useState([]);
   const [numberPage, setNumberPage] = useState(1);
-  const [linesRest, setLinesRest] = useState([]);
+  const [inChargesRest, setInChargesRest] = useState([]);
 
   useEffect(() => {
-    async function loadLines(page = numberPage) {
-      const response = await api.get(`/linhas?page=${page}`);
+    async function loadInCharges(page = numberPage) {
+      const response = await api.get(`/encarregados?page=${page}`);
       const { docs, ...restEmployee } = response.data;
 
-      setLines(docs);
-      setLinesRest(restEmployee);
+      setInCharges(docs);
+      setInChargesRest(restEmployee);
     }
 
-    loadLines();
+    loadInCharges();
   }, [numberPage]);
 
   async function destroy(id) {
-    await api.delete(`/linhas/${id}`);
-    const response = await api.get("/linhas");
+    await api.delete(`/encarregados/${id}`);
+    const response = await api.get("/encarregados");
 
     const { docs, ...restEmployee } = response.data;
-    setLines(docs);
-    setLinesRest(restEmployee);
+    setInCharges(docs);
+    setInChargesRest(restEmployee);
   }
 
   async function filterName(e) {
     if (e.target.value !== "") {
-      const response = await api.get(`/linhas?nome=${e.target.value}`);
-      setLines(response.data.docs);
+      const response = await api.get(`/encarregados?nome=${e.target.value}`);
+      setInCharges(response.data.docs);
     } else {
-      const response = await api.get("/linhas");
-      setLines(response.data.docs);
+      const response = await api.get("/encarregados");
+      setInCharges(response.data.docs);
     }
   }
 
@@ -56,7 +56,7 @@ export default function ListLinha({ history }) {
   }
 
   function pageNext() {
-    if (numberPage === linesRest.pages) return;
+    if (numberPage === inChargesRest.pages) return;
     const numberOfPages = numberPage + 1;
 
     setNumberPage(numberOfPages);
@@ -66,7 +66,7 @@ export default function ListLinha({ history }) {
     <Container>
       <SideBar />
       <Content>
-        <h1>Linhas</h1>
+        <h1>Encarregado</h1>
         <Pesquisa>
           <input
             onChange={filterName}
@@ -80,37 +80,35 @@ export default function ListLinha({ history }) {
             <thead>
               <tr>
                 <th>Nome</th>
-                <th>Cidade Início</th>
-                <th>Cidade Fim</th>
-                <th>Encarregado</th>
-                <th>QTD Tratores</th>
-                <th>QTD Tratoristas</th>
-                <th>QTD Trabalhadores Manual</th>
+                <th>Setor</th>
                 <th>Ação</th>
               </tr>
             </thead>
             <tbody>
-              {lines.map(line => {
+              {inCharges.map(inCharge => {
                 return (
-                  <tr key={line._id}>
-                    <td>{line.nome}</td>
-                    <td>{line.cidadeInicio}</td>
-                    <td>{line.cidadeFim}</td>
-                    <td>{line.encarregado.nome}</td>
-                    <td>{line.qtdTratores}</td>
-                    <td>{line.qtdTratoristas}</td>
-                    <td>{line.qtdTrabalhadoresManual}</td>
+                  <tr key={inCharge._id}>
                     <td>
-                      <Link to={`/cadlinha/${line._id}`}>
+                      {!inCharge.funcionario ? null : inCharge.funcionario.nome}
+                    </td>
+                    <td>{inCharge.setor}</td>
+                    <td>
+                      <Link to={`/cadencarregado/${inCharge._id}`}>
                         <IoMdCreate />
                       </Link>
                       <Link
                         to="#"
                         onClick={() => {
                           if (
-                            window.confirm(`Deseja excluir o(a) ${line.nome}`)
+                            window.confirm(
+                              `Deseja excluir o(a) ${
+                                !inCharge.funcionario
+                                  ? null
+                                  : inCharge.funcionario.nome
+                              }`
+                            )
                           )
-                            destroy(line._id);
+                            destroy(inCharge._id);
                         }}
                       >
                         <IoIosTrash />
@@ -126,13 +124,13 @@ export default function ListLinha({ history }) {
           <button onClick={pagePrevious}>Anterior</button>
           <Dados>
             <strong>
-              Quantidade de Funcionários: <small>{linesRest.total}</small>
+              Quantidade de Funcionários: <small>{inChargesRest.total}</small>
             </strong>
             <strong>
-              Número de páginas: <small>{linesRest.pages}</small>
+              Número de páginas: <small>{inChargesRest.pages}</small>
             </strong>
             <strong>
-              Página atual: <small>{linesRest.page}</small>
+              Página atual: <small>{inChargesRest.page}</small>
             </strong>
           </Dados>
           <button onClick={pageNext}>Próximo</button>
