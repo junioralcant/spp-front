@@ -17,6 +17,7 @@ import ListLinha from "./pages/ListLinha";
 import ListEncarregado from "./pages/ListEncarregado";
 import ListHotel from "./pages/ListHotel";
 import ListLoja from "./pages/ListLoja";
+import ListPosto from "./pages/ListPosto";
 
 const Routes = () => (
   <BrowserRouter>
@@ -47,6 +48,7 @@ const Routes = () => (
       <Route path="/encarregado" component={ListEncarregado} />
       <Route path="/hotel" component={ListHotel} />
       <Route path="/loja" component={ListLoja} />
+      <Route path="/posto" component={ListPosto} />
 
       {/* <PrivateRoute path="/" exact component={Main} />
       <PrivateRoute path="/financeiro" component={Financeiro} />
