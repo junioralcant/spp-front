@@ -43,7 +43,7 @@ export default function CadHotel({ history, match }) {
         await api.postOrPut("/hotels", match.params.id, data);
         toastr.success(`Alteração feita com sucesso!
         `);
-        history.push("/");
+        history.push("/hotel");
       } catch (error) {
         toastr.error(error.response.data.error);
       }

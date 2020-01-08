@@ -15,6 +15,7 @@ import DetailsFuncionario from "./pages/DetailsFuncionario";
 import ListFuncionario from "./pages/ListFuncionario";
 import ListLinha from "./pages/ListLinha";
 import ListEncarregado from "./pages/ListEncarregado";
+import ListHotel from "./pages/ListHotel";
 
 const Routes = () => (
   <BrowserRouter>
@@ -43,6 +44,7 @@ const Routes = () => (
       <Route path="/detailsfuncionario/:id" component={DetailsFuncionario} />
       <Route path="/linha" component={ListLinha} />
       <Route path="/encarregado" component={ListEncarregado} />
+      <Route path="/hotel" component={ListHotel} />
 
       {/* <PrivateRoute path="/" exact component={Main} />
       <PrivateRoute path="/financeiro" component={Financeiro} />
