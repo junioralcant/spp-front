@@ -42,7 +42,7 @@ export default function CadPosto({ history, match }) {
         await api.postOrPut("/postos", match.params.id, data);
         toastr.success(`Alteração feita com sucesso!
         `);
-        history.push("/");
+        history.push("/posto");
       } catch (error) {
         toastr.error(error.response.data.error);
       }

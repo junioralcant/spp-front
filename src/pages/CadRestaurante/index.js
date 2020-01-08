@@ -43,7 +43,7 @@ export default function CadRestaurante({ history, match }) {
         await api.postOrPut("/restaurantes", match.params.id, data);
         toastr.success(`Alteração feita com sucesso!
         `);
-        history.push("/");
+        history.push("/restaurante");
       } catch (error) {
         toastr.error(error.response.data.error);
       }
