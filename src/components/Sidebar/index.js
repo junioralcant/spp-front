@@ -71,7 +71,7 @@ export default function Sidebar() {
           </li>
 
           <li>
-            <Link to="/produto">Loja</Link>
+            <Link to="/loja">Loja</Link>
           </li>
 
           <li>

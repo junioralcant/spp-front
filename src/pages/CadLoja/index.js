@@ -43,7 +43,7 @@ export default function CadLoja({ history, match }) {
         await api.postOrPut("/lojas", match.params.id, data);
         toastr.success(`Alteração feita com sucesso!
         `);
-        history.push("/");
+        history.push("/loja");
       } catch (error) {
         toastr.error(error.response.data.error);
       }

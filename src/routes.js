@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import Home from "./pages/Home";
 import CadFuncionario from "./pages/CadFuncionario";
@@ -16,6 +16,7 @@ import ListFuncionario from "./pages/ListFuncionario";
 import ListLinha from "./pages/ListLinha";
 import ListEncarregado from "./pages/ListEncarregado";
 import ListHotel from "./pages/ListHotel";
+import ListLoja from "./pages/ListLoja";
 
 const Routes = () => (
   <BrowserRouter>
@@ -45,6 +46,7 @@ const Routes = () => (
       <Route path="/linha" component={ListLinha} />
       <Route path="/encarregado" component={ListEncarregado} />
       <Route path="/hotel" component={ListHotel} />
+      <Route path="/loja" component={ListLoja} />
 
       {/* <PrivateRoute path="/" exact component={Main} />
       <PrivateRoute path="/financeiro" component={Financeiro} />
