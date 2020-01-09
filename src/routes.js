@@ -19,6 +19,8 @@ import ListHotel from "./pages/ListHotel";
 import ListLoja from "./pages/ListLoja";
 import ListPosto from "./pages/ListPosto";
 import ListRestaurante from "./pages/ListRestaurante";
+import ListVeiculo from "./pages/ListVeiculo";
+
 import NotaHotel from "./pages/NotaHotel";
 
 const Routes = () => (
@@ -51,7 +53,9 @@ const Routes = () => (
       <Route path="/hotel" component={ListHotel} />
       <Route path="/loja" component={ListLoja} />
       <Route path="/posto" component={ListPosto} />
+      <Route path="/veiculo" component={ListVeiculo} />
       <Route path="/restaurante" component={ListRestaurante} />
+      <Route path="/restaurante" component={ListVeiculo} />
       <Route exact path="/notahotel" component={NotaHotel} />
       <Route path="/notahotel/:id" component={NotaHotel} />
 

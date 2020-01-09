@@ -60,26 +60,30 @@ export default function Sidebar() {
           </li>
 
           <li>
-            <Link to="/linha">Linha</Link>
+            <Link to="/linha">Linhas</Link>
           </li>
 
           <li>
-            <Link to="/encarregado">Encarregado</Link>
+            <Link to="/encarregado">Encarregados</Link>
           </li>
           <li>
-            <Link to="/hotel">Hotel</Link>
-          </li>
-
-          <li>
-            <Link to="/loja">Loja</Link>
+            <Link to="/hotel">Hotels</Link>
           </li>
 
           <li>
-            <Link to="/posto">Posto</Link>
+            <Link to="/loja">Lojas</Link>
           </li>
 
           <li>
-            <Link to="/restaurante">Restaurante</Link>
+            <Link to="/posto">Postos</Link>
+          </li>
+
+          <li>
+            <Link to="/restaurante">Restaurantes</Link>
+          </li>
+
+          <li>
+            <Link to="/veiculo">Veículos</Link>
           </li>
         </Nav>
 
