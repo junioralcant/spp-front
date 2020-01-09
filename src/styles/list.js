@@ -17,6 +17,49 @@ export const Content = styled.div`
   width: 100%;
 `;
 
+export const Total = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: #63f5b0;
+  border-radius: 3px;
+  padding: 10px;
+  margin-left: 1%;
+  margin-bottom: 1%;
+  align-items: center;
+
+  strong {
+    display: flex;
+    justify-content: space-between;
+    color: #000;
+    align-items: center;
+
+    small {
+      background: #353940;
+      color: #fff;
+      font-weight: bold;
+      font-size: 15px;
+      border-radius: 3px;
+      padding: 2px;
+      margin-left: 5px;
+      margin-top: 2px;
+    }
+  }
+
+  strong.total {
+    padding: 5px;
+    margin-top: 2px;
+    border-radius: 3px;
+    background: #353940;
+    color: #fff;
+    align-items: center;
+
+    small.total {
+      color: #fff;
+      border: none;
+    }
+  }
+`;
+
 export const Pesquisa = styled.div`
   display: flex;
   flex-direction: row;

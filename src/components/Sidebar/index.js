@@ -88,7 +88,7 @@ export default function Sidebar() {
             <strong>Notas</strong>
           </li>
           <li>
-            <Link to="/produto">Hotel</Link>
+            <Link to="/notahotel">Hotel</Link>
           </li>
 
           <li>
