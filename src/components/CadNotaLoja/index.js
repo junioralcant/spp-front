@@ -143,8 +143,8 @@ export default function CadNotaLoja({ history, match }) {
                 options={stores}
                 placeholder={optionsExistentsStores.name}
                 styles={colorStyle}
-                getOptionLabel={hotel => hotel.nome}
-                getOptionValue={hotel => hotel._id}
+                getOptionLabel={loja => loja.nome}
+                getOptionValue={loja => loja._id}
                 onChange={value => setStore(value._id)}
               />
             </div>

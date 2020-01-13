@@ -23,6 +23,7 @@ import ListVeiculo from "./pages/ListVeiculo";
 
 import NotaHotel from "./pages/NotaHotel";
 import NotaLoja from "./pages/NotaLoja";
+import NotaPosto from "./pages/NotaPosto";
 
 const Routes = () => (
   <BrowserRouter>
@@ -60,6 +61,8 @@ const Routes = () => (
       <Route path="/notahotel/:id" component={NotaHotel} />
       <Route exact path="/notaloja" component={NotaLoja} />
       <Route path="/notaloja/:id" component={NotaLoja} />
+      <Route exact path="/notaposto" component={NotaPosto} />
+      <Route path="/notaposto/:id" component={NotaPosto} />
 
       {/* <PrivateRoute path="/" exact component={Main} />
       <PrivateRoute path="/financeiro" component={Financeiro} />
