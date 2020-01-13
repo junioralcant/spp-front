@@ -15,58 +15,58 @@ import {
 } from "../../styles/list";
 import api from "../../services/api";
 
-export default function ListNotaHotel({ history, match }) {
-  const [hotelsNotes, setHotelsNotes] = useState([]);
+export default function ListNotaLoja({ history, match }) {
+  const [storesNotes, setStoresNotes] = useState([]);
   const [numberPage, setNumberPage] = useState(1);
-  const [hotelsNotesRest, setHotelsNotesRest] = useState([]);
-  const [dataMin, setDataMin] = useState("");
-  const [dataMax, setDataMax] = useState("");
+  const [storesNotesRest, setStoresNotesRest] = useState([]);
+  const [dataMin, setDataMin] = useState("2019-12-21");
+  const [dataMax, setDataMax] = useState("2019-12-21");
   const [total, setTotal] = useState(false);
 
   useEffect(() => {
-    async function loadHotelsNotes(page = numberPage) {
-      const response = await api.get(`/notashotels?page=${page}`);
-      const { docs, ...restHotels } = response.data;
-      setHotelsNotes(response.data.docs);
-      setHotelsNotesRest(restHotels);
+    async function loadStoresNotes(page = numberPage) {
+      const response = await api.get(`/notaslojas?page=${page}`);
+      const { docs, ...restStores } = response.data;
+      setStoresNotes(response.data.docs);
+      setStoresNotesRest(restStores);
     }
 
-    loadHotelsNotes();
+    loadStoresNotes();
   }, [numberPage]);
 
   async function filterName(e) {
     if (e.target.value !== "") {
-      const response = await api.get(`/notashotels?nome=${e.target.value}`);
-      setHotelsNotes(response.data.docs);
+      const response = await api.get(`/notaslojas?nome=${e.target.value}`);
+      setStoresNotes(response.data.docs);
     } else {
-      const response = await api.get("/notashotels");
-      setHotelsNotes(response.data.docs);
+      const response = await api.get("/notaslojas");
+      setStoresNotes(response.data.docs);
     }
   }
 
   async function destroy(id) {
-    await api.delete(`/notashotels/${id}`);
-    const response = await api.get("/notashotels");
+    await api.delete(`/notaslojas/${id}`);
+    const response = await api.get("/notaslojas");
 
-    const { docs, ...restHotelsNotes } = response.data;
-    setHotelsNotes(docs);
-    setHotelsNotesRest(restHotelsNotes);
+    const { docs, ...reststoresNotes } = response.data;
+    setStoresNotes(docs);
+    setStoresNotesRest(reststoresNotes);
   }
 
   async function filterData() {
     if (dataMin !== "" || dataMax !== "") {
       const response = await api.get(
-        `/notashotels?data_min=${dataMin}&data_max=${dataMax}&limit_page=${hotelsNotesRest.total}`
+        `/notaslojas?data_min=${dataMin}&data_max=${dataMax}&limit_page=${storesNotesRest.total}`
       );
-      const { docs, ...noteHotelRest } = response.data;
-      setHotelsNotes(docs);
-      setHotelsNotesRest(noteHotelRest);
+      const { docs, ...notesStoresRest } = response.data;
+      setStoresNotes(docs);
+      setStoresNotesRest(notesStoresRest);
       setTotal(true);
     } else {
-      const response = await api.get("/notashotels");
-      const { docs, ...noteHotelRest } = response.data;
-      setHotelsNotes(docs);
-      setHotelsNotesRest(noteHotelRest);
+      const response = await api.get("/notaslojas");
+      const { docs, ...notesStoresRest } = response.data;
+      setStoresNotes(docs);
+      setStoresNotesRest(notesStoresRest);
       setTotal(false);
     }
   }
@@ -87,7 +87,7 @@ export default function ListNotaHotel({ history, match }) {
   }
 
   // Soma os valores de todos os pedidos
-  const valorTotal = hotelsNotes.reduce(
+  const valorTotal = storesNotes.reduce(
     (valorTotal, valor) => valorTotal + valor.total,
     0
   );
@@ -99,7 +99,7 @@ export default function ListNotaHotel({ history, match }) {
   }
 
   function pageNext() {
-    if (numberPage === hotelsNotesRest.pages) return;
+    if (numberPage === storesNotesRest.pages) return;
     const numberOfPages = numberPage + 1;
 
     setNumberPage(numberOfPages);
@@ -108,7 +108,7 @@ export default function ListNotaHotel({ history, match }) {
   return (
     <ContainerList>
       <ContentList>
-        <h1>Notas Hotels</h1>
+        <h1>Notas Lojas</h1>
         <Pesquisa>
           <input
             onChange={filterName}
@@ -135,7 +135,7 @@ export default function ListNotaHotel({ history, match }) {
                 <div>
                   <strong>
                     Quantidade:{" "}
-                    <small className="total">{hotelsNotesRest.total}</small>
+                    <small className="total">{storesNotesRest.total}</small>
                   </strong>
                   <strong className="total">
                     Valor total:{" "}
@@ -157,7 +157,7 @@ export default function ListNotaHotel({ history, match }) {
           <table>
             <thead>
               <tr>
-                <th>Hotel</th>
+                <th>Loja</th>
                 <th>Encarregado</th>
                 <th>Data</th>
                 <th>Valor Unitário</th>
@@ -167,21 +167,21 @@ export default function ListNotaHotel({ history, match }) {
               </tr>
             </thead>
             <tbody>
-              {hotelsNotes.map(note => {
+              {storesNotes.map(note => {
                 const dataNote = formatToTimeZone(note.data, "DD-MM-YYYY", {
                   timeZone: "Europe/Berlin"
                 });
 
                 return (
                   <tr key={note._id}>
-                    <td>{!note.hotel ? null : note.hotel.nome}</td>
+                    <td>{!note.loja ? null : note.loja.nome}</td>
                     <td>{!note.encarregado ? null : note.encarregado.nome}</td>
                     <td>{dataNote}</td>
                     <td>{note.valorUnitario} R$</td>
                     <td>{note.quantidade}</td>
                     <td>{note.total} R$</td>
                     <td>
-                      <Link to={`/notahotel/${note._id}`}>
+                      <Link to={`/notaloja/${note._id}`}>
                         <IoMdCreate />
                       </Link>
                       <Link
@@ -189,8 +189,8 @@ export default function ListNotaHotel({ history, match }) {
                         onClick={() => {
                           if (
                             window.confirm(
-                              `Deseja excluir o(a) ${
-                                !note.hotel ? null : note.hotel.nome
+                              `Deseja excluir o(a) Nota  ${
+                                !note.loja ? null : note.loja.nome
                               }`
                             )
                           )
@@ -210,13 +210,13 @@ export default function ListNotaHotel({ history, match }) {
           <button onClick={pagePrevious}>Anterior</button>
           <Dados>
             <strong>
-              Quantidade de Notas: <small>{hotelsNotesRest.total}</small>
+              Quantidade de Notas: <small>{storesNotesRest.total}</small>
             </strong>
             <strong>
-              Número de páginas: <small>{hotelsNotesRest.pages}</small>
+              Número de páginas: <small>{storesNotesRest.pages}</small>
             </strong>
             <strong>
-              Página atual: <small>{hotelsNotesRest.page}</small>
+              Página atual: <small>{storesNotesRest.page}</small>
             </strong>
           </Dados>
           <button onClick={pageNext}>Próximo</button>
