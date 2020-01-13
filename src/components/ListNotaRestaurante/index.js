@@ -195,6 +195,7 @@ export default function ListNotaRestaurante({ history, match }) {
                 <th>Linha</th>
                 <th>Encarregado</th>
                 <th>Data</th>
+                <th>Tipo de Pagamento</th>
                 <th>Valor Unitário</th>
                 <th>Quantidade</th>
                 <th>Total</th>
@@ -213,6 +214,7 @@ export default function ListNotaRestaurante({ history, match }) {
                     <td>{!note.linha ? null : note.linha.nome}</td>
                     <td>{!note.encarregado ? null : note.encarregado.nome}</td>
                     <td>{dataNote}</td>
+                    <td>{note.tipoDePagamento}</td>
                     <td>{note.valorUnitario} R$</td>
                     <td>{note.quantidade}</td>
                     <td>{note.total} R$</td>

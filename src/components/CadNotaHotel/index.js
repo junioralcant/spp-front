@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { formatToTimeZone } from "date-fns-timezone";
-import { Form, Input } from "unform";
+import { Form, Input, Select as SelectUnform } from "unform";
 import Select from "react-select";
 import toastr from "toastr";
 import "toastr/build/toastr.min.css";
@@ -159,6 +159,12 @@ export default function CadNotaHotel({ history, match }) {
     setTimeout(() => history.go(0), 100);
   }
 
+  const pagamento = [
+    { id: "Avista", title: "Avista" },
+    { id: "A prazo", title: "A prazo" },
+    { id: "Transferência", title: "Transferência" }
+  ];
+
   return (
     <Container>
       <Form initialData={data} onSubmit={handlerSubmit}>
@@ -198,6 +204,12 @@ export default function CadNotaHotel({ history, match }) {
                 onChange={value => setLine(value._id)}
               />
             </div>
+            <SelectUnform
+              name="tipoDePagamento"
+              options={pagamento}
+              value={data.tipoDePagamento}
+              label="Tipo de Pagamento *"
+            />
           </div>
 
           <div>
