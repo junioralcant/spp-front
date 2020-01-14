@@ -11,7 +11,6 @@ import CadRestaurante from "./pages/CadRestaurante";
 import CadPosto from "./pages/CadPosto";
 import CadProprietario from "./pages/CadProprietario";
 import CadVeiculo from "./pages/CadVeiculo";
-import DetailsFuncionario from "./pages/DetailsFuncionario";
 import ListFuncionario from "./pages/ListFuncionario";
 import ListLinha from "./pages/ListLinha";
 import ListEncarregado from "./pages/ListEncarregado";
@@ -21,6 +20,9 @@ import ListPosto from "./pages/ListPosto";
 import ListRestaurante from "./pages/ListRestaurante";
 import ListVeiculo from "./pages/ListVeiculo";
 import ListProprietario from "./pages/ListProprietario";
+
+import DetailsFuncionario from "./pages/DetailsFuncionario";
+import DetailsHotel from "./pages/DetailsHotel";
 
 import NotaHotel from "./pages/NotaHotel";
 import NotaLoja from "./pages/NotaLoja";
@@ -56,6 +58,7 @@ const Routes = () => (
       <Route path="/linha" component={ListLinha} />
       <Route path="/encarregado" component={ListEncarregado} />
       <Route path="/hotel" component={ListHotel} />
+      <Route path="/detailshotel/:id" component={DetailsHotel} />
       <Route path="/loja" component={ListLoja} />
       <Route path="/posto" component={ListPosto} />
       <Route path="/proprietario" component={ListProprietario} />
