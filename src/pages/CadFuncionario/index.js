@@ -15,7 +15,25 @@ export default function CadFuncionario({ history, match }) {
 
   async function handlerSubmit(data) {
     if (!match.params.id) {
-      if (!data.nome) {
+      if (
+        !data.nome ||
+        !data.rg ||
+        !data.cpf ||
+        !data.dataNascimento ||
+        !data.dataAdmissao ||
+        !data.telefone ||
+        !data.endereco ||
+        !data.numeroCasa ||
+        !data.bairro ||
+        !data.cidade ||
+        !data.estado ||
+        !data.cep ||
+        !data.agenciaBancaria ||
+        !data.contaBancaria ||
+        !data.tipoConta ||
+        !data.banco ||
+        !data.pis
+      ) {
         toastr.error(`Preencha todos os campos obrigatórios (*)!
         `);
       } else {
@@ -81,6 +99,11 @@ export default function CadFuncionario({ history, match }) {
     [data.dataNascimento, data.dataAdmissao, match.params.id]
   );
 
+  const accountType = [
+    { id: "Corrente", title: "Corrente" },
+    { id: "Poupança", title: "Poupança" }
+  ];
+
   return (
     <Container>
       <Sidebar />
@@ -88,55 +111,64 @@ export default function CadFuncionario({ history, match }) {
         <h1>Cadastro de Funcionários</h1>
         <ContentForm>
           <div>
-            <Input name="nome" label="Nome" />
+            <Input name="nome" label="Nome *" />
 
-            <Input name="rg" label="RG" />
+            <Input name="rg" label="RG *" />
 
-            <Input name="cpf" label="CPF" />
+            <Input name="cpf" label="CPF *" />
 
             <Input name="cnh" label="CNH" />
 
-            <Input type="date" name="dataNascimento" label="Data Nascimento" />
+            <Input
+              type="date"
+              name="dataNascimento"
+              label="Data Nascimento *"
+            />
 
-            <Input type="date" name="dataAdmissao" label="Data Admissão" />
+            <Input type="date" name="dataAdmissao" label="Data Admissão *" />
 
             <Input name="cargo" label="Cargo" />
 
-            <Input name="telefone" label="Telefone" />
+            <Input name="telefone" label="Telefone *" />
 
             <Input name="whatsapp" label="Whatsapp" />
 
             <Input name="email" type="email" label="Email" />
 
-            <Input name="endereco" label="Endereço" />
+            <Input name="endereco" label="Endereço *" />
           </div>
           <div>
-            <Input name="numeroCasa" label="Número Casa" />
+            <Input name="numeroCasa" label="Número Casa *" />
 
-            <Input name="bairro" label="Bairro" />
+            <Input name="bairro" label="Bairro *" />
 
-            <Input name="cidade" label="Cidade" />
+            <Input name="cidade" label="Cidade *" />
 
             <Select
               name="estado"
               options={estados}
               value={data.estado}
-              label="Estado"
+              label="Estado *"
             />
 
-            <Input name="cep" label="CEP" />
+            <Input name="cep" label="CEP *" />
 
             <Input name="salarioFixo" label="Salário Fixo" />
 
-            <Input name="agenciaBancaria" label="Agência Bancária" />
+            <Input name="agenciaBancaria" label="Agência Bancária *" />
 
-            <Input name="contaBancaria" label="Conta Bancária" />
+            <Input name="contaBancaria" label="Conta Bancária *" />
 
-            <Input name="tipoConta" label="Tipo de Conta" />
+            <Select
+              name="tipoConta"
+              options={accountType}
+              value={data.tipoConta}
+              label="Tipo de Conta *"
+            />
 
-            <Input name="banco" label="Banco" />
+            <Input name="banco" label="Banco *" />
 
-            <Input name="pis" label="PIS" />
+            <Input name="pis" label="PIS *" />
           </div>
         </ContentForm>
         <div className="buttons">
