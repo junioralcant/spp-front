@@ -78,12 +78,10 @@ export default function CadVeiculo({ history, match }) {
     }
   }, [match.params, match.params.id]);
 
-  const optionsExistents = [
-    data.proprietario != null && {
-      id: data.proprietario._id,
-      name: data.proprietario.nome
-    }
-  ];
+  const optionsExistents = data.proprietario != null && {
+    id: data.proprietario._id,
+    name: data.proprietario.nome
+  };
 
   function setOwner(value) {
     setSelectOwner(value);
@@ -105,9 +103,7 @@ export default function CadVeiculo({ history, match }) {
               <span>Proprietário *</span>
               <Select
                 options={owners}
-                placeholder={optionsExistents.map(fun => {
-                  return fun.name;
-                })}
+                placeholder={optionsExistents.name}
                 styles={colorStyle}
                 getOptionLabel={employee => employee.nome}
                 getOptionValue={employee => employee._id}

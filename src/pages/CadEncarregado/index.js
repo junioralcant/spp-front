@@ -69,12 +69,10 @@ export default function CadEncarregado({ history, match }) {
     }
   }, [match.params, match.params.id]);
 
-  const optionsExistents = [
-    data.funcionario != null && {
-      id: data.funcionario._id,
-      name: data.funcionario.nome
-    }
-  ];
+  const optionsExistents = data.funcionario != null && {
+    id: data.funcionario._id,
+    name: data.funcionario.nome
+  };
 
   function setEmployee(value) {
     setSelectEmplo(value);
@@ -91,9 +89,7 @@ export default function CadEncarregado({ history, match }) {
             <Select
               options={employees}
               name="funcionario.nome"
-              placeholder={optionsExistents.map(fun => {
-                return fun.name;
-              })}
+              placeholder={optionsExistents.name}
               styles={colorStyle}
               getOptionLabel={employee => employee.nome}
               getOptionValue={employee => employee._id}
