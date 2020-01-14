@@ -19,7 +19,7 @@ export default function ListPosto({ history }) {
   const [gasStationsRest, setGasStationsRest] = useState([]);
 
   useEffect(() => {
-    async function loadLines(page = numberPage) {
+    async function loadGasStations(page = numberPage) {
       const response = await api.get(`/postos?page=${page}`);
       const { docs, ...restGasStatios } = response.data;
 
@@ -27,7 +27,7 @@ export default function ListPosto({ history }) {
       setGasStationsRest(restGasStatios);
     }
 
-    loadLines();
+    loadGasStations();
   }, [numberPage]);
 
   async function destroy(id) {
@@ -134,7 +134,7 @@ export default function ListPosto({ history }) {
           <button onClick={pagePrevious}>Anterior</button>
           <Dados>
             <strong>
-              Quantidade de Funcionários: <small>{gasStationsRest.total}</small>
+              Quantidade de Postos: <small>{gasStationsRest.total}</small>
             </strong>
             <strong>
               Número de páginas: <small>{gasStationsRest.pages}</small>

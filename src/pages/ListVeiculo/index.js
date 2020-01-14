@@ -164,7 +164,7 @@ export default function ListVehicle({ history }) {
           <button onClick={pagePrevious}>Anterior</button>
           <Dados>
             <strong>
-              Quantidade de Funcionários: <small>{vehiclesRest.total}</small>
+              Quantidade de Veículos: <small>{vehiclesRest.total}</small>
             </strong>
             <strong>
               Número de páginas: <small>{vehiclesRest.pages}</small>

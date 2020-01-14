@@ -19,7 +19,7 @@ export default function ListRestaurante({ history }) {
   const [restaurantsRest, setRestaurantsRest] = useState([]);
 
   useEffect(() => {
-    async function loadLines(page = numberPage) {
+    async function loadRestaurants(page = numberPage) {
       const response = await api.get(`/restaurantes?page=${page}`);
       const { docs, ...restRestaurants } = response.data;
 
@@ -27,7 +27,7 @@ export default function ListRestaurante({ history }) {
       setRestaurantsRest(restRestaurants);
     }
 
-    loadLines();
+    loadRestaurants();
   }, [numberPage]);
 
   async function destroy(id) {
@@ -136,7 +136,7 @@ export default function ListRestaurante({ history }) {
           <button onClick={pagePrevious}>Anterior</button>
           <Dados>
             <strong>
-              Quantidade de Funcionários: <small>{restaurantsRest.total}</small>
+              Quantidade de Restaurantes: <small>{restaurantsRest.total}</small>
             </strong>
             <strong>
               Número de páginas: <small>{restaurantsRest.pages}</small>

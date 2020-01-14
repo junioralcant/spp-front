@@ -126,7 +126,7 @@ export default function ListLinha({ history }) {
           <button onClick={pagePrevious}>Anterior</button>
           <Dados>
             <strong>
-              Quantidade de Funcionários: <small>{linesRest.total}</small>
+              Quantidade de Linhas: <small>{linesRest.total}</small>
             </strong>
             <strong>
               Número de páginas: <small>{linesRest.pages}</small>

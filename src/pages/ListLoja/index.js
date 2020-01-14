@@ -19,7 +19,7 @@ export default function ListLoja({ history }) {
   const [storesRest, setStoresRest] = useState([]);
 
   useEffect(() => {
-    async function loadLines(page = numberPage) {
+    async function loadStores(page = numberPage) {
       const response = await api.get(`/lojas?page=${page}`);
       const { docs, ...restStore } = response.data;
 
@@ -27,7 +27,7 @@ export default function ListLoja({ history }) {
       setStoresRest(restStore);
     }
 
-    loadLines();
+    loadStores();
   }, [numberPage]);
 
   async function destroy(id) {
@@ -134,7 +134,7 @@ export default function ListLoja({ history }) {
           <button onClick={pagePrevious}>Anterior</button>
           <Dados>
             <strong>
-              Quantidade de Funcionários: <small>{storesRest.total}</small>
+              Quantidade de Lojas: <small>{storesRest.total}</small>
             </strong>
             <strong>
               Número de páginas: <small>{storesRest.pages}</small>

@@ -124,7 +124,7 @@ export default function ListEncarregado({ history }) {
           <button onClick={pagePrevious}>Anterior</button>
           <Dados>
             <strong>
-              Quantidade de Funcionários: <small>{inChargesRest.total}</small>
+              Quantidade de Encarregado: <small>{inChargesRest.total}</small>
             </strong>
             <strong>
               Número de páginas: <small>{inChargesRest.pages}</small>

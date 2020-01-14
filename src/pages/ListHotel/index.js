@@ -134,7 +134,7 @@ export default function ListHotel({ history }) {
           <button onClick={pagePrevious}>Anterior</button>
           <Dados>
             <strong>
-              Quantidade de Funcionários: <small>{hotelsRest.total}</small>
+              Quantidade de Hotels: <small>{hotelsRest.total}</small>
             </strong>
             <strong>
               Número de páginas: <small>{hotelsRest.pages}</small>
