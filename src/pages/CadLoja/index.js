@@ -66,6 +66,11 @@ export default function CadLoja({ history, match }) {
     }
   }, [match.params, match.params.id]);
 
+  const accountType = [
+    { id: "Corrente", title: "Corrente" },
+    { id: "Poupança", title: "Poupança" }
+  ];
+
   return (
     <Container>
       <Sidebar />
@@ -79,8 +84,6 @@ export default function CadLoja({ history, match }) {
             <Input name="endereco" label="Endereco *" />
             <Input name="bairro" label="Bairro *" />
             <Input name="cidade" label="Cidade *" />
-          </div>
-          <div>
             <Select
               name="estado"
               options={estados}
@@ -88,9 +91,23 @@ export default function CadLoja({ history, match }) {
               label="Estado"
             />
             <Input name="numeroCasa" label="Número da Loja *" />
+          </div>
+          <div>
             <Input name="cep" label="CEP *" />
             <Input name="telefone" label="Telefone *" />
             <Input name="whatsapp" label="Whatsapp" />
+            <Input name="agenciaBancaria" label="Agência Bancária" />
+
+            <Input name="contaBancaria" label="Conta Bancária" />
+
+            <Select
+              name="tipoConta"
+              options={accountType}
+              value={data.tipoConta}
+              label="Tipo de Conta"
+            />
+
+            <Input name="banco" label="Banco" />
           </div>
         </ContentForm>
         <div className="buttons">
