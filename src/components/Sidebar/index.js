@@ -104,7 +104,7 @@ export default function Sidebar() {
           </li>
 
           <li>
-            <Link to="/produto">Restaurante</Link>
+            <Link to="/notarestaurante">Restaurante</Link>
           </li>
         </Nav>
       </div>
