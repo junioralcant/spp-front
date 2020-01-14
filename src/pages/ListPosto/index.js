@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { IoIosTrash, IoMdCreate } from "react-icons/io";
+import { IoIosTrash, IoMdCreate, IoMdAddCircleOutline } from "react-icons/io";
 
 import api from "../../services/api";
 import SideBar from "../../components/Sidebar";
@@ -126,6 +126,9 @@ export default function ListPosto({ history }) {
                     <td>
                       <Link to={`/cadposto/${gasStation._id}`}>
                         <IoMdCreate />
+                      </Link>
+                      <Link to={`/detailsposto/${gasStation._id}`}>
+                        <IoMdAddCircleOutline />
                       </Link>
                       <Link
                         to="#"
