@@ -27,12 +27,7 @@ export default function CadFuncionario({ history, match }) {
         !data.bairro ||
         !data.cidade ||
         !data.estado ||
-        !data.cep ||
-        !data.agenciaBancaria ||
-        !data.contaBancaria ||
-        !data.tipoConta ||
-        !data.banco ||
-        !data.pis
+        !data.cep
       ) {
         toastr.error(`Preencha todos os campos obrigatórios (*)!
         `);
@@ -155,20 +150,20 @@ export default function CadFuncionario({ history, match }) {
 
             <Input name="salarioFixo" label="Salário Fixo" />
 
-            <Input name="agenciaBancaria" label="Agência Bancária *" />
+            <Input name="agenciaBancaria" label="Agência Bancária" />
 
-            <Input name="contaBancaria" label="Conta Bancária *" />
+            <Input name="contaBancaria" label="Conta Bancária" />
 
             <Select
               name="tipoConta"
               options={accountType}
               value={data.tipoConta}
-              label="Tipo de Conta *"
+              label="Tipo de Conta"
             />
 
-            <Input name="banco" label="Banco *" />
+            <Input name="banco" label="Banco" />
 
-            <Input name="pis" label="PIS *" />
+            <Input name="pis" label="PIS" />
           </div>
         </ContentForm>
         <div className="buttons">
