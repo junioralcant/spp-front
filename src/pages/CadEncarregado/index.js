@@ -85,7 +85,7 @@ export default function CadEncarregado({ history, match }) {
         <h1>Cadastro de Encarregado</h1>
         <ContentForm>
           <div className="select">
-            <span>Funcionários</span>
+            <span>Funcionários *</span>
             <Select
               options={employees}
               name="funcionario.nome"
@@ -97,7 +97,7 @@ export default function CadEncarregado({ history, match }) {
             />
           </div>
           <div>
-            <Input name="setor" label="Setor" />
+            <Input name="setor" label="Setor *" />
           </div>
         </ContentForm>
         <div className="buttons">
