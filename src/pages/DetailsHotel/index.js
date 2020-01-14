@@ -94,7 +94,7 @@ export default function DetailsHotel({ match, history }) {
                 Banco: <small>{hotel.banco}</small>
               </li>
               <li>
-                Agência : <small>{hotel.contaBancaria}</small>
+                Agência : <small>{hotel.agenciaBancaria}</small>
               </li>
               <li>
                 Conta: <small>{hotel.contaBancaria}</small>

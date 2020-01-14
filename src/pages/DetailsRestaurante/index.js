@@ -85,7 +85,7 @@ export default function DetailsRestaurante({ match, history }) {
                 Banco: <small>{restaurante.banco}</small>
               </li>
               <li>
-                Agência : <small>{restaurante.contaBancaria}</small>
+                Agência : <small>{restaurante.agenciaBancaria}</small>
               </li>
               <li>
                 Conta: <small>{restaurante.contaBancaria}</small>

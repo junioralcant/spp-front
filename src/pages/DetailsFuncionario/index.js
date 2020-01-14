@@ -110,7 +110,7 @@ export default function DetailsFuncionario({ match, history }) {
                 Banco: <small>{employee.banco}</small>
               </li>
               <li>
-                Agência : <small>{employee.contaBancaria}</small>
+                Agência : <small>{employee.agenciaBancaria}</small>
               </li>
               <li>
                 Conta: <small>{employee.contaBancaria}</small>

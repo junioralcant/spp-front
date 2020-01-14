@@ -85,7 +85,7 @@ export default function DetailsLoja({ match, history }) {
                 Banco: <small>{loja.banco}</small>
               </li>
               <li>
-                Agência : <small>{loja.contaBancaria}</small>
+                Agência : <small>{loja.agenciaBancaria}</small>
               </li>
               <li>
                 Conta: <small>{loja.contaBancaria}</small>
