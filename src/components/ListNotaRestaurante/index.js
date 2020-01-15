@@ -37,12 +37,18 @@ export default function ListNotaRestaurante({ history, match }) {
   async function filterName(e) {
     if (e.target.value !== "") {
       const response = await api.get(
-        `/notasrestaurantes?nome=${e.target.value}`
+        `/notasrestaurantes?nome=${e.target.value}&limit_page=${restaurantsNotesRest.total}`
       );
+      const { docs, ...restRestaurants } = response.data;
       setRestaurantsNotes(response.data.docs);
+      setRestaurantsNotesRest(restRestaurants);
+      setTotal(true);
     } else {
       const response = await api.get("/notasrestaurantes");
+      const { docs, ...restRestaurants } = response.data;
       setRestaurantsNotes(response.data.docs);
+      setRestaurantsNotesRest(restRestaurants);
+      setTotal(false);
     }
   }
 
