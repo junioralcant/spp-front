@@ -36,11 +36,19 @@ export default function ListNotaHotel({ history, match }) {
 
   async function filterName(e) {
     if (e.target.value !== "") {
-      const response = await api.get(`/notashotels?nome=${e.target.value}`);
+      const response = await api.get(
+        `/notashotels?nome=${e.target.value}&limit_page=${hotelsNotesRest.total}`
+      );
+      const { docs, ...restHotels } = response.data;
       setHotelsNotes(response.data.docs);
+      setHotelsNotesRest(restHotels);
+      setTotal(true);
     } else {
       const response = await api.get("/notashotels");
+      const { docs, ...restHotels } = response.data;
       setHotelsNotes(response.data.docs);
+      setHotelsNotesRest(restHotels);
+      setTotal(false);
     }
   }
 
@@ -91,6 +99,8 @@ export default function ListNotaHotel({ history, match }) {
     (valorTotal, valor) => valorTotal + valor.total,
     0
   );
+
+  console.log(valorTotal);
 
   function pagePrevious() {
     if (numberPage === 1) return;

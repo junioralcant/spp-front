@@ -66,7 +66,7 @@ export default function ListEncarregado({ history }) {
     <Container>
       <SideBar />
       <Content>
-        <h1>Encarregado</h1>
+        <h1>Encarregados</h1>
         <Pesquisa>
           <input
             onChange={filterName}
