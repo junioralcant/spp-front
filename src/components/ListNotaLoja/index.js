@@ -36,11 +36,19 @@ export default function ListNotaLoja({ history, match }) {
 
   async function filterName(e) {
     if (e.target.value !== "") {
-      const response = await api.get(`/notaslojas?nome=${e.target.value}`);
+      const response = await api.get(
+        `/notaslojas?nome=${e.target.value}&limit_page=${storesNotesRest.total}`
+      );
+      const { docs, ...restStores } = response.data;
       setStoresNotes(response.data.docs);
+      setStoresNotesRest(restStores);
+      setTotal(true);
     } else {
       const response = await api.get("/notaslojas");
+      const { docs, ...restStores } = response.data;
       setStoresNotes(response.data.docs);
+      setStoresNotesRest(restStores);
+      setTotal(true);
     }
   }
 
