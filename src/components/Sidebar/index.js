@@ -43,10 +43,6 @@ export default function Sidebar() {
           </li>
 
           <li>
-            <Link to="/cadproprietario">Cad Proprietário</Link>
-          </li>
-
-          <li>
             <Link to="/cadveiculo">Cad Veiculo</Link>
           </li>
         </Nav>
@@ -80,6 +76,10 @@ export default function Sidebar() {
 
           <li>
             <Link to="/restaurante">Restaurantes</Link>
+          </li>
+
+          <li>
+            <Link to="/proprietario">Proprietários</Link>
           </li>
 
           <li>

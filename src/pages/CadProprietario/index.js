@@ -5,6 +5,7 @@ import "toastr/build/toastr.min.css";
 
 import { Container, ContentForm } from "../../styles/form";
 import Sidebar from "../../components/Sidebar";
+import { Header } from "./styles";
 
 import api from "../../services/api";
 import estados from "../../services/estados";
@@ -69,7 +70,10 @@ export default function CadProprietario({ history, match }) {
     <Container>
       <Sidebar />
       <Form initialData={data} onSubmit={handlerSubmit}>
-        <h1>Cadastro de Proprietário</h1>
+        <Header>
+          <h1>Cadastro de Proprietário</h1>
+          <button onClick={() => history.push("/cadveiculo")}>Voltar</button>
+        </Header>
         <ContentForm>
           <div>
             <Input name="nome" label="Nome do Proprietário *" />
