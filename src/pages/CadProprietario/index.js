@@ -43,7 +43,7 @@ export default function CadProprietario({ history, match }) {
         await api.postOrPut("/proprietarios", match.params.id, data);
         toastr.success(`Alteração feita com sucesso!
         `);
-        history.push("/");
+        history.push("/proprietario");
       } catch (error) {
         toastr.error(error.response.data.error);
       }
@@ -72,7 +72,9 @@ export default function CadProprietario({ history, match }) {
       <Form initialData={data} onSubmit={handlerSubmit}>
         <Header>
           <h1>Cadastro de Proprietário</h1>
-          <button onClick={() => history.push("/cadveiculo")}>Voltar</button>
+          {!match.params.id && (
+            <button onClick={() => history.push("/cadveiculo")}>Voltar</button>
+          )}
         </Header>
         <ContentForm>
           <div>
