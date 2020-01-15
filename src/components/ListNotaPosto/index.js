@@ -36,11 +36,19 @@ export default function ListNotaPosto({ history, match }) {
 
   async function filterName(e) {
     if (e.target.value !== "") {
-      const response = await api.get(`/notaspostos?nome=${e.target.value}`);
+      const response = await api.get(
+        `/notaspostos?nome=${e.target.value}&limit_page=${gasStationsRest.total}`
+      );
+      const { docs, ...restGasStation } = response.data;
       setGasStations(response.data.docs);
+      setGasStationsRest(restGasStation);
+      setTotal(true);
     } else {
       const response = await api.get("/notaspostos");
+      const { docs, ...restGasStation } = response.data;
       setGasStations(response.data.docs);
+      setGasStationsRest(restGasStation);
+      setTotal(false);
     }
   }
 
