@@ -145,7 +145,7 @@ export default function ListVehicle({ history }) {
                         onClick={() => {
                           if (
                             window.confirm(
-                              `Deseja excluir o(a) vículo com placa ${vehicle.placa} ?`
+                              `Deseja excluir o(a) veículo com placa ${vehicle.placa} ?`
                             )
                           )
                             destroy(vehicle._id);
