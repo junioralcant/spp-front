@@ -66,10 +66,10 @@ export default function CadLoja({ history, match }) {
     }
   }, [match.params, match.params.id]);
 
-  const accountType = [
-    { id: "Corrente", title: "Corrente" },
-    { id: "Poupança", title: "Poupança" }
-  ];
+    const accountType = [
+      { id: "Corrente", title: "Corrente" },
+      { id: "Poupança", title: "Poupança" }
+    ];
 
   return (
     <Container>

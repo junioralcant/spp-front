@@ -89,7 +89,7 @@ export default function Sidebar() {
 
         <Nav>
           <li>
-            <strong>Notas</strong>
+            <strong>Fornecedores</strong>
           </li>
           <li>
             <Link to="/notahotel">Hotel</Link>
