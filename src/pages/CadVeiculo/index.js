@@ -56,7 +56,7 @@ export default function CadVeiculo({ history, match }) {
         await api.postOrPut("/veiculos", match.params.id, data);
         toastr.success(`Alteração feita com sucesso!
         `);
-        history.push("/");
+        history.push("/veiculo");
       } catch (error) {
         toastr.error(error.response.data.error);
       }
