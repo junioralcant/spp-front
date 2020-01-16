@@ -19,8 +19,8 @@ export default function ListNotaLoja({ history, match }) {
   const [storesNotes, setStoresNotes] = useState([]);
   const [numberPage, setNumberPage] = useState(1);
   const [storesNotesRest, setStoresNotesRest] = useState([]);
-  const [dataMin, setDataMin] = useState("2019-12-21");
-  const [dataMax, setDataMax] = useState("2019-12-21");
+  const [dataMin, setDataMin] = useState("");
+  const [dataMax, setDataMax] = useState("");
   const [total, setTotal] = useState(false);
 
   useEffect(() => {
@@ -168,8 +168,6 @@ export default function ListNotaLoja({ history, match }) {
                 <th>Loja</th>
                 <th>Encarregado</th>
                 <th>Data</th>
-                <th>Valor Unitário</th>
-                <th>Quantidade</th>
                 <th>Total</th>
                 <th>Ação</th>
               </tr>
@@ -185,8 +183,6 @@ export default function ListNotaLoja({ history, match }) {
                     <td>{!note.loja ? null : note.loja.nome}</td>
                     <td>{!note.encarregado ? null : note.encarregado.nome}</td>
                     <td>{dataNote}</td>
-                    <td>{note.valorUnitario} R$</td>
-                    <td>{note.quantidade}</td>
                     <td>{note.total} R$</td>
                     <td>
                       <Link to={`/notaloja/${note._id}`}>

@@ -36,12 +36,7 @@ export default function CadNotaLoja({ history, match }) {
 
   async function handlerSubmit(data) {
     if (!match.params.id) {
-      if (
-        !data.valorUnitario ||
-        !data.quantidade ||
-        !selectInCharges ||
-        !selectStores
-      ) {
+      if (!data.total || !data.data || !selectInCharges || !selectStores) {
         toastr.error(`Preencha todos os campos obrigatórios (*)!
         `);
       } else {
@@ -159,11 +154,10 @@ export default function CadNotaLoja({ history, match }) {
                 onChange={value => setInCharge(value._id)}
               />
             </div>
-            <Input name="valorUnitario" label="Valor Unitário" />
           </div>
 
           <div>
-            <Input name="quantidade" label="Quantidade" />
+            <Input name="total" label="total" />
             <Input type="date" name="data" label="Data" />
           </div>
         </ContentForm>
