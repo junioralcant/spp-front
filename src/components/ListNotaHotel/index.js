@@ -52,6 +52,24 @@ export default function ListNotaHotel({ history, match }) {
     }
   }
 
+  async function filterNameLine(e) {
+    if (e.target.value !== "") {
+      const response = await api.get(
+        `/notashotels?nome_linha=${e.target.value}&limit_page=${hotelsNotesRest.total}`
+      );
+      const { docs, ...restHotels } = response.data;
+      setHotelsNotes(response.data.docs);
+      setHotelsNotesRest(restHotels);
+      setTotal(true);
+    } else {
+      const response = await api.get("/notashotels");
+      const { docs, ...restHotels } = response.data;
+      setHotelsNotes(response.data.docs);
+      setHotelsNotesRest(restHotels);
+      setTotal(false);
+    }
+  }
+
   async function destroy(id) {
     await api.delete(`/notashotels/${id}`);
     const response = await api.get("/notashotels");
@@ -100,8 +118,6 @@ export default function ListNotaHotel({ history, match }) {
     0
   );
 
-  console.log(valorTotal);
-
   function pagePrevious() {
     if (numberPage === 1) return;
     const numberOfPages = numberPage - 1;
@@ -125,6 +141,12 @@ export default function ListNotaHotel({ history, match }) {
             type="text"
             name="nome"
             placeholder="Pesquisar por nome"
+          />
+          <input
+            onChange={filterNameLine}
+            type="text"
+            name="nomelinha"
+            placeholder="Pesquisar por nome linha"
           />
           <input
             type="date"
@@ -168,6 +190,7 @@ export default function ListNotaHotel({ history, match }) {
             <thead>
               <tr>
                 <th>Hotel</th>
+                <th>Linha</th>
                 <th>Encarregado</th>
                 <th>Data</th>
                 <th>Valor Unitário</th>
@@ -185,6 +208,7 @@ export default function ListNotaHotel({ history, match }) {
                 return (
                   <tr key={note._id}>
                     <td>{!note.hotel ? null : note.hotel.nome}</td>
+                    <td>{!note.linha ? null : note.linha.nome}</td>
                     <td>{!note.encarregado ? null : note.encarregado.nome}</td>
                     <td>{dataNote}</td>
                     <td>{note.valorUnitario} R$</td>

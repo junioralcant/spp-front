@@ -12,8 +12,10 @@ import api from "../../services/api";
 export default function CadNotaHotel({ history, match }) {
   const [data, setData] = useState({});
   const [inCharges, setInCharges] = useState();
+  const [lines, setLines] = useState();
   const [hotels, setHotels] = useState();
   const [selectInCharges, setSelectInCharge] = useState();
+  const [selectLines, setSelectLines] = useState();
   const [selectHotels, setSelectHotels] = useState("");
 
   useEffect(() => {
@@ -34,6 +36,15 @@ export default function CadNotaHotel({ history, match }) {
     loadHotel();
   }, []);
 
+  useEffect(() => {
+    async function loadLines() {
+      const response = await api.get("/linhas");
+      setLines(response.data.docs);
+    }
+
+    loadLines();
+  }, []);
+
   async function handlerSubmit(data) {
     if (!match.params.id) {
       if (
@@ -48,6 +59,7 @@ export default function CadNotaHotel({ history, match }) {
         try {
           data.encarregado = selectInCharges;
           data.hotel = selectHotels;
+          data.linha = selectLines;
           await api.postOrPut("/notashotels", match.params.id, data);
           toastr.success(`Nota Hotel cadastrado com sucesso!
           `);
@@ -60,6 +72,7 @@ export default function CadNotaHotel({ history, match }) {
       try {
         data.encarregado = selectInCharges;
         data.hotel = selectHotels;
+        data.linha = selectLines;
         await api.postOrPut("/notashotels", match.params.id, data);
         toastr.success(`Alteração feita com sucesso!`);
         history.push("/notahotel");
@@ -111,13 +124,23 @@ export default function CadNotaHotel({ history, match }) {
     id: data.encarregado._id,
     name: data.encarregado.nome
   };
+  const optionsExistentsLines = data.linha != null && {
+    id: data.linha._id,
+    placa: data.linha.placa
+  };
 
   useEffect(() => {
     if (match.params.id) {
       setSelectHotels(optionsExistentsHotels.id);
       setSelectInCharge(optionsExistentsInCharges.id);
+      setSelectLines(optionsExistentsLines.id);
     }
-  }, [match.params, optionsExistentsHotels.id, optionsExistentsInCharges.id]);
+  }, [
+    match.params,
+    optionsExistentsHotels.id,
+    optionsExistentsInCharges.id,
+    optionsExistentsLines.id
+  ]);
 
   function setHotel(value) {
     setSelectHotels(value);
@@ -125,6 +148,10 @@ export default function CadNotaHotel({ history, match }) {
 
   function setInCharge(value) {
     setSelectInCharge(value);
+  }
+
+  function setLine(value) {
+    setSelectLines(value);
   }
 
   function canceled() {
@@ -160,10 +187,21 @@ export default function CadNotaHotel({ history, match }) {
                 onChange={value => setInCharge(value._id)}
               />
             </div>
-            <Input name="valorUnitario" label="Valor Unitário" />
+            <div className="select">
+              <span>Linha</span>
+              <Select
+                options={lines}
+                placeholder={optionsExistentsLines.nome}
+                styles={colorStyle}
+                getOptionLabel={line => line.nome}
+                getOptionValue={line => line._id}
+                onChange={value => setLine(value._id)}
+              />
+            </div>
           </div>
 
           <div>
+            <Input name="valorUnitario" label="Valor Unitário" />
             <Input name="quantidade" label="Quantidade" />
             <Input type="date" name="data" label="Data" />
           </div>
