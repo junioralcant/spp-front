@@ -34,6 +34,15 @@ export default function ListNotaPosto({ history, match }) {
     loadGasStations();
   }, [numberPage]);
 
+  async function destroy(id) {
+    await api.delete(`/notaspostos/${id}`);
+    const response = await api.get("/notaspostos");
+
+    const { docs, ...restgasStations } = response.data;
+    setGasStations(docs);
+    setGasStationsRest(restgasStations);
+  }
+
   async function filterName(e) {
     if (e.target.value !== "") {
       const response = await api.get(
@@ -52,13 +61,20 @@ export default function ListNotaPosto({ history, match }) {
     }
   }
 
-  async function destroy(id) {
-    await api.delete(`/notaspostos/${id}`);
-    const response = await api.get("/notaspostos");
-
-    const { docs, ...restgasStations } = response.data;
-    setGasStations(docs);
-    setGasStationsRest(restgasStations);
+  async function filterNameDriver(e) {
+    if (e.target.value !== "") {
+      const response = await api.get(
+        `/notaspostos?nome_motorista=${e.target.value}&limit_page=${gasStationsRest.total}`
+      );
+      const { docs, ...restGasStation } = response.data;
+      setGasStations(response.data.docs);
+      setGasStationsRest(restGasStation);
+    } else {
+      const response = await api.get("/notaspostos");
+      const { docs, ...restGasStation } = response.data;
+      setGasStations(response.data.docs);
+      setGasStationsRest(restGasStation);
+    }
   }
 
   async function filterData() {
@@ -122,7 +138,13 @@ export default function ListNotaPosto({ history, match }) {
             onChange={filterName}
             type="text"
             name="nome"
-            placeholder="Pesquisar por nome"
+            placeholder="Pesquisar por nome posto"
+          />
+          <input
+            onChange={filterNameDriver}
+            type="text"
+            name="nome"
+            placeholder="Pesquisar por nome motorista"
           />
           <input
             type="date"
