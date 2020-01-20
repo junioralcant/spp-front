@@ -34,6 +34,15 @@ export default function ListNotaLoja({ history, match }) {
     loadStoresNotes();
   }, [numberPage]);
 
+  async function destroy(id) {
+    await api.delete(`/notaslojas/${id}`);
+    const response = await api.get("/notaslojas");
+
+    const { docs, ...reststoresNotes } = response.data;
+    setStoresNotes(docs);
+    setStoresNotesRest(reststoresNotes);
+  }
+
   async function filterName(e) {
     if (e.target.value !== "") {
       const response = await api.get(
@@ -52,13 +61,22 @@ export default function ListNotaLoja({ history, match }) {
     }
   }
 
-  async function destroy(id) {
-    await api.delete(`/notaslojas/${id}`);
-    const response = await api.get("/notaslojas");
-
-    const { docs, ...reststoresNotes } = response.data;
-    setStoresNotes(docs);
-    setStoresNotesRest(reststoresNotes);
+  async function filterNameLine(e) {
+    if (e.target.value !== "") {
+      const response = await api.get(
+        `/notaslojas?nome_linha=${e.target.value}&limit_page=${storesNotesRest.total}`
+      );
+      const { docs, ...restStores } = response.data;
+      setStoresNotes(response.data.docs);
+      setStoresNotesRest(restStores);
+      setTotal(true);
+    } else {
+      const response = await api.get("/notaslojas");
+      const { docs, ...restStores } = response.data;
+      setStoresNotes(response.data.docs);
+      setStoresNotesRest(restStores);
+      setTotal(true);
+    }
   }
 
   async function filterData() {
@@ -125,6 +143,12 @@ export default function ListNotaLoja({ history, match }) {
             placeholder="Pesquisar por nome"
           />
           <input
+            onChange={filterNameLine}
+            type="text"
+            name="nome_linha"
+            placeholder="Pesquisar por nome linha"
+          />
+          <input
             type="date"
             name="dataInicio"
             placeholder="Data início"
@@ -167,6 +191,12 @@ export default function ListNotaLoja({ history, match }) {
               <tr>
                 <th>Loja</th>
                 <th>Encarregado</th>
+                <th>Linha</th>
+                <th>Veículo</th>
+                <th>Tipo de Compra</th>
+                <th>Tipo de Pagamento</th>
+                <th>Número de Ordem</th>
+                <th>Observação</th>
                 <th>Data</th>
                 <th>Total</th>
                 <th>Ação</th>
@@ -182,6 +212,12 @@ export default function ListNotaLoja({ history, match }) {
                   <tr key={note._id}>
                     <td>{!note.loja ? null : note.loja.nome}</td>
                     <td>{!note.encarregado ? null : note.encarregado.nome}</td>
+                    <td>{!note.linha ? null : note.linha.nome}</td>
+                    <td>{!note.veiculo ? null : note.veiculo.tipo}</td>
+                    <td>{note.tipoDeCompra}</td>
+                    <td>{note.tipoDePagamento}</td>
+                    <td>{note.numeroDeOrdem}</td>
+                    <td>{note.observacao}</td>
                     <td>{dataNote}</td>
                     <td>{note.total} R$</td>
                     <td>

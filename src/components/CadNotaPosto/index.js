@@ -159,10 +159,6 @@ export default function CadNotaPosto({ history, match }) {
     setTimeout(() => history.go(0), 100);
   }
 
-  console.log(selectDrivers);
-  console.log(selectVehicles);
-  console.log(selectGasStations);
-
   const pagamento = [
     { id: "Avista", title: "Avista" },
     { id: "A prazo", title: "A prazo" },
