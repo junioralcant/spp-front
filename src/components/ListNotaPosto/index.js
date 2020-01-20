@@ -61,6 +61,24 @@ export default function ListNotaPosto({ history, match }) {
     }
   }
 
+  async function filterNameLine(e) {
+    if (e.target.value !== "") {
+      const response = await api.get(
+        `/notaspostos?nome_linha=${e.target.value}&limit_page=${gasStationsRest.total}`
+      );
+      const { docs, ...restGasStation } = response.data;
+      setGasStations(response.data.docs);
+      setGasStationsRest(restGasStation);
+      setTotal(true);
+    } else {
+      const response = await api.get("/notaspostos");
+      const { docs, ...restGasStation } = response.data;
+      setGasStations(response.data.docs);
+      setGasStationsRest(restGasStation);
+      setTotal(false);
+    }
+  }
+
   async function filterNameDriver(e) {
     if (e.target.value !== "") {
       const response = await api.get(
@@ -137,13 +155,19 @@ export default function ListNotaPosto({ history, match }) {
           <input
             onChange={filterName}
             type="text"
-            name="nome"
+            name="nomeposto"
             placeholder="Pesquisar por nome posto"
+          />
+          <input
+            onChange={filterNameLine}
+            type="text"
+            name="nomelinha"
+            placeholder="Pesquisar por nome linha"
           />
           <input
             onChange={filterNameDriver}
             type="text"
-            name="nome"
+            name="nomemotorista"
             placeholder="Pesquisar por nome motorista"
           />
           <input
@@ -188,6 +212,7 @@ export default function ListNotaPosto({ history, match }) {
             <thead>
               <tr>
                 <th>Posto</th>
+                <th>Linha</th>
                 <th>Motorista</th>
                 <th>Placa do Veículo</th>
                 <th>Número de Ordem</th>
@@ -208,6 +233,7 @@ export default function ListNotaPosto({ history, match }) {
                 return (
                   <tr key={note._id}>
                     <td>{!note.posto ? null : note.posto.nome}</td>
+                    <td>{!note.linha ? null : note.linha.nome}</td>
                     <td>{!note.motorista ? null : note.motorista.nome}</td>
                     <td>{!note.veiculo ? null : note.veiculo.placa}</td>
                     <td>{note.numeroDaOrdem}</td>

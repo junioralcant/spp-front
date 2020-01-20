@@ -12,10 +12,12 @@ import api from "../../services/api";
 export default function CadNotaPosto({ history, match }) {
   const [data, setData] = useState({});
   const [drivers, setDrivers] = useState();
+  const [lines, setLines] = useState();
   const [gasStations, setGasStations] = useState();
   const [vehicles, setVehicles] = useState();
   const [selectDrivers, setSelectDrivers] = useState();
   const [selectGasStations, setSelectGasStations] = useState();
+  const [selectLines, setSelectLines] = useState();
   const [selectVehicles, setSelectVehicles] = useState();
 
   useEffect(() => {
@@ -45,6 +47,15 @@ export default function CadNotaPosto({ history, match }) {
     loadVehicles();
   }, []);
 
+  useEffect(() => {
+    async function loadLines() {
+      const response = await api.get("/linhas");
+      setLines(response.data.docs);
+    }
+
+    loadLines();
+  }, []);
+
   async function handlerSubmit(data) {
     if (!match.params.id) {
       if (
@@ -61,6 +72,7 @@ export default function CadNotaPosto({ history, match }) {
           data.motorista = selectDrivers;
           data.posto = selectGasStations;
           data.veiculo = selectVehicles;
+          data.linha = selectLines;
           await api.postOrPut("/notaspostos", match.params.id, data);
           toastr.success(`Nota Posto cadastrado com sucesso!
           `);
@@ -74,6 +86,7 @@ export default function CadNotaPosto({ history, match }) {
         data.motorista = selectDrivers;
         data.posto = selectGasStations;
         data.veiculo = selectVehicles;
+        data.linha = selectLines;
         await api.postOrPut("/notaspostos", match.params.id, data);
         toastr.success(`Alteração feita com sucesso!`);
         history.push("/notaposto");
@@ -129,17 +142,23 @@ export default function CadNotaPosto({ history, match }) {
     id: data.veiculo._id,
     placa: data.veiculo.placa
   };
+  const optionsExistentsLines = data.linha != null && {
+    id: data.linha._id,
+    placa: data.linha.placa
+  };
 
   useEffect(() => {
     if (match.params.id) {
       setSelectDrivers(optionsExistentsDrivers.id);
       setSelectGasStations(optionsExistentsGasStations.id);
       setSelectVehicles(optionsExistentsVehicles.id);
+      setSelectLines(optionsExistentsLines.id);
     }
   }, [
     optionsExistentsDrivers.id,
     optionsExistentsGasStations.id,
-    optionsExistentsVehicles.id
+    optionsExistentsVehicles.id,
+    optionsExistentsLines.id
   ]);
 
   function setStore(value) {
@@ -152,6 +171,10 @@ export default function CadNotaPosto({ history, match }) {
 
   function setVehicle(value) {
     setSelectVehicles(value);
+  }
+
+  function setLine(value) {
+    setSelectLines(value);
   }
 
   function canceled() {
@@ -202,6 +225,17 @@ export default function CadNotaPosto({ history, match }) {
                 getOptionLabel={vehicle => vehicle.placa}
                 getOptionValue={vehicle => vehicle._id}
                 onChange={value => setVehicle(value._id)}
+              />
+            </div>
+            <div className="select">
+              <span>Linha</span>
+              <Select
+                options={lines}
+                placeholder={optionsExistentsLines.nome}
+                styles={colorStyle}
+                getOptionLabel={line => line.nome}
+                getOptionValue={line => line._id}
+                onChange={value => setLine(value._id)}
               />
             </div>
             <Input name="numeroDaOrdem" label="Número da Ordem" />
