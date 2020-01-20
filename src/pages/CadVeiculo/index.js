@@ -32,10 +32,7 @@ export default function CadVeiculo({ history, match }) {
         !data.tipo ||
         !data.status ||
         !data.modelo ||
-        !data.ano ||
-        !data.placa ||
-        !data.chassi ||
-        !data.numeroDeSerie
+        !data.ano
       ) {
         toastr.error(`Preencha todos os campos obrigatórios (*)!
         `);
@@ -129,9 +126,9 @@ export default function CadVeiculo({ history, match }) {
 
           <div>
             <Input name="ano" label="Ano *" />
-            <Input name="placa" label="Placa *" />
-            <Input name="chassi" label="Chassi *" />
-            <Input name="numeroDeSerie" label="Número de Série *" />
+            <Input name="placa" label="Placa" />
+            <Input name="chassi" label="Chassi" />
+            <Input name="numeroDeSerie" label="Número de Série" />
           </div>
         </ContentForm>
         <div className="buttons">
