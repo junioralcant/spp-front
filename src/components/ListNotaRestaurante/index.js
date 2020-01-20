@@ -52,6 +52,24 @@ export default function ListNotaRestaurante({ history, match }) {
     }
   }
 
+  async function filterNameLine(e) {
+    if (e.target.value !== "") {
+      const response = await api.get(
+        `/notasrestaurantes?nome_linha=${e.target.value}&limit_page=${restaurantsNotesRest.total}`
+      );
+      const { docs, ...restRestaurants } = response.data;
+      setRestaurantsNotes(response.data.docs);
+      setRestaurantsNotesRest(restRestaurants);
+      setTotal(true);
+    } else {
+      const response = await api.get("/notasrestaurantes");
+      const { docs, ...restRestaurants } = response.data;
+      setRestaurantsNotes(response.data.docs);
+      setRestaurantsNotesRest(restRestaurants);
+      setTotal(false);
+    }
+  }
+
   async function destroy(id) {
     await api.delete(`/notasrestaurantes/${id}`);
     const response = await api.get("/notasrestaurantes");
@@ -125,6 +143,12 @@ export default function ListNotaRestaurante({ history, match }) {
             placeholder="Pesquisar por nome"
           />
           <input
+            onChange={filterNameLine}
+            type="text"
+            name="nomelinha"
+            placeholder="Pesquisar por nome linha"
+          />
+          <input
             type="date"
             name="dataInicio"
             placeholder="Data início"
@@ -168,6 +192,7 @@ export default function ListNotaRestaurante({ history, match }) {
             <thead>
               <tr>
                 <th>Restaurante</th>
+                <th>Linha</th>
                 <th>Encarregado</th>
                 <th>Data</th>
                 <th>Valor Unitário</th>
@@ -185,6 +210,7 @@ export default function ListNotaRestaurante({ history, match }) {
                 return (
                   <tr key={note._id}>
                     <td>{!note.restaurante ? null : note.restaurante.nome}</td>
+                    <td>{!note.linha ? null : note.linha.nome}</td>
                     <td>{!note.encarregado ? null : note.encarregado.nome}</td>
                     <td>{dataNote}</td>
                     <td>{note.valorUnitario} R$</td>

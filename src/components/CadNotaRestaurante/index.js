@@ -13,7 +13,9 @@ export default function CadNotaRestaurante({ history, match }) {
   const [data, setData] = useState({});
   const [inCharges, setInCharges] = useState();
   const [restaurants, setRestaurants] = useState();
+  const [lines, setLines] = useState();
   const [selectInCharges, setSelectInCharge] = useState();
+  const [selectLines, setSelectLines] = useState();
   const [selectRestaurant, setSelectRestaurant] = useState("");
 
   useEffect(() => {
@@ -34,6 +36,15 @@ export default function CadNotaRestaurante({ history, match }) {
     loadRestautant();
   }, []);
 
+  useEffect(() => {
+    async function loadLines() {
+      const response = await api.get("/linhas");
+      setLines(response.data.docs);
+    }
+
+    loadLines();
+  }, []);
+
   async function handlerSubmit(data) {
     if (!match.params.id) {
       if (
@@ -48,6 +59,7 @@ export default function CadNotaRestaurante({ history, match }) {
         try {
           data.encarregado = selectInCharges;
           data.restaurante = selectRestaurant;
+          data.linha = selectLines;
           await api.postOrPut("/notasrestaurantes", match.params.id, data);
           toastr.success(`Nota Loja cadastrado com sucesso!
           `);
@@ -60,6 +72,7 @@ export default function CadNotaRestaurante({ history, match }) {
       try {
         data.encarregado = selectInCharges;
         data.restaurante = selectRestaurant;
+        data.linha = selectLines;
         await api.postOrPut("/notasrestaurantes", match.params.id, data);
         toastr.success(`Alteração feita com sucesso!`);
         history.push("/notarestaurante");
@@ -111,13 +124,23 @@ export default function CadNotaRestaurante({ history, match }) {
     id: data.encarregado._id,
     name: data.encarregado.nome
   };
+  const optionsExistentsLines = data.linha != null && {
+    id: data.linha._id,
+    placa: data.linha.placa
+  };
 
   useEffect(() => {
     if (match.params.id) {
       setSelectRestaurant(optionsExistentsRestaurants.id);
       setSelectInCharge(optionsExistentsInCharges.id);
+      setSelectLines(optionsExistentsLines.id);
     }
-  }, [match.params, optionsExistentsRestaurants.id,  optionsExistentsInCharges.id]);
+  }, [
+    match.params,
+    optionsExistentsRestaurants.id,
+    optionsExistentsInCharges.id,
+    optionsExistentsLines.id
+  ]);
 
   function setRestaurant(value) {
     setSelectRestaurant(value);
@@ -125,6 +148,10 @@ export default function CadNotaRestaurante({ history, match }) {
 
   function setInCharge(value) {
     setSelectInCharge(value);
+  }
+
+  function setLine(value) {
+    setSelectLines(value);
   }
 
   function canceled() {
@@ -160,10 +187,21 @@ export default function CadNotaRestaurante({ history, match }) {
                 onChange={value => setInCharge(value._id)}
               />
             </div>
-            <Input name="valorUnitario" label="Valor Unitário" />
+            <div className="select">
+              <span>Linha</span>
+              <Select
+                options={lines}
+                placeholder={optionsExistentsLines.nome}
+                styles={colorStyle}
+                getOptionLabel={line => line.nome}
+                getOptionValue={line => line._id}
+                onChange={value => setLine(value._id)}
+              />
+            </div>
           </div>
 
           <div>
+            <Input name="valorUnitario" label="Valor Unitário" />
             <Input name="quantidade" label="Quantidade" />
             <Input type="date" name="data" label="Data" />
           </div>
