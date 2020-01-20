@@ -172,6 +172,7 @@ export default function ListNotaPosto({ history, match }) {
                 <th>Data</th>
                 <th>Valor Unitário</th>
                 <th>Quantidade</th>
+                <th>Tipo de Pagamento</th>
                 <th>Total</th>
                 <th>Ação</th>
               </tr>
@@ -191,6 +192,7 @@ export default function ListNotaPosto({ history, match }) {
                     <td>{dataNote}</td>
                     <td>{note.valorUnitario} R$</td>
                     <td>{note.quantidade}</td>
+                    <td>{note.tipoDePagamento}</td>
                     <td>{note.total} R$</td>
                     <td>
                       <Link to={`/notaposto/${note._id}`}>

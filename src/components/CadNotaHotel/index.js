@@ -115,8 +115,9 @@ export default function CadNotaHotel({ history, match }) {
   useEffect(() => {
     if (match.params.id) {
       setSelectHotels(optionsExistentsHotels.id);
+      setSelectInCharge(optionsExistentsInCharges.id);
     }
-  }, [match.params, optionsExistentsHotels]);
+  }, [match.params, optionsExistentsHotels.id, optionsExistentsInCharges.id]);
 
   function setHotel(value) {
     setSelectHotels(value);

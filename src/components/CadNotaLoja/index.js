@@ -110,8 +110,9 @@ export default function CadNotaLoja({ history, match }) {
   useEffect(() => {
     if (match.params.id) {
       setSelectStores(optionsExistentsStores.id);
+      setInCharge(optionsExistentsInCharges.id);
     }
-  }, [match.params, optionsExistentsStores]);
+  }, [match.params, optionsExistentsStores.id, optionsExistentsInCharges.id]);
 
   function setStore(value) {
     setSelectStores(value);

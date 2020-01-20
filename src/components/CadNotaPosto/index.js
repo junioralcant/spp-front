@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { formatToTimeZone } from "date-fns-timezone";
-import { Form, Input } from "unform";
+import { Form, Input, Select as SelectUnform } from "unform";
 import Select from "react-select";
 import toastr from "toastr";
 import "toastr/build/toastr.min.css";
@@ -132,9 +132,15 @@ export default function CadNotaPosto({ history, match }) {
 
   useEffect(() => {
     if (match.params.id) {
+      setSelectDrivers(optionsExistentsDrivers.id);
       setSelectGasStations(optionsExistentsGasStations.id);
+      setSelectVehicles(optionsExistentsVehicles.id);
     }
-  }, [match.params, optionsExistentsGasStations]);
+  }, [
+    optionsExistentsDrivers.id,
+    optionsExistentsGasStations.id,
+    optionsExistentsVehicles.id
+  ]);
 
   function setStore(value) {
     setSelectGasStations(value);
@@ -152,6 +158,16 @@ export default function CadNotaPosto({ history, match }) {
     history.push("/notaposto");
     setTimeout(() => history.go(0), 100);
   }
+
+  console.log(selectDrivers);
+  console.log(selectVehicles);
+  console.log(selectGasStations);
+
+  const pagamento = [
+    { id: "Avista", title: "Avista" },
+    { id: "A prazo", title: "A prazo" },
+    { id: "Transferência", title: "Transferência" }
+  ];
 
   return (
     <Container>
@@ -198,6 +214,12 @@ export default function CadNotaPosto({ history, match }) {
           <div>
             <Input name="valorUnitario" label="Valor Unitário" />
             <Input name="quantidade" label="Quantidade" />
+            <SelectUnform
+              name="tipoDePagamento"
+              options={pagamento}
+              value={data.tipoDePagamento}
+              label="Tipo de Pagamento *"
+            />
             <Input type="date" name="data" label="Data" />
           </div>
         </ContentForm>

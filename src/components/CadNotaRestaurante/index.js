@@ -115,8 +115,9 @@ export default function CadNotaRestaurante({ history, match }) {
   useEffect(() => {
     if (match.params.id) {
       setSelectRestaurant(optionsExistentsRestaurants.id);
+      setSelectInCharge(optionsExistentsInCharges.id);
     }
-  }, [match.params, optionsExistentsRestaurants]);
+  }, [match.params, optionsExistentsRestaurants.id,  optionsExistentsInCharges.id]);
 
   function setRestaurant(value) {
     setSelectRestaurant(value);
