@@ -106,6 +106,10 @@ export default function Sidebar() {
           <li>
             <Link to="/notarestaurante">Restaurante</Link>
           </li>
+
+          <li>
+            <Link to="/notafazenda">Fazenda</Link>
+          </li>
         </Nav>
       </div>
       <Sair onClick={sair}>Sair</Sair>
