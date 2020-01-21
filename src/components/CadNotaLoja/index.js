@@ -138,7 +138,7 @@ export default function CadNotaLoja({ history, match }) {
   };
   const optionsExistentsLines = data.linha != null && {
     id: data.linha._id,
-    placa: data.linha.placa
+    name: data.linha.nome
   };
 
   useEffect(() => {
@@ -226,7 +226,7 @@ export default function CadNotaLoja({ history, match }) {
               <span>Linha</span>
               <Select
                 options={lines}
-                placeholder={optionsExistentsLines.nome}
+                placeholder={optionsExistentsLines.name}
                 styles={colorStyle}
                 getOptionLabel={line => line.nome}
                 getOptionValue={line => line._id}
