@@ -49,6 +49,18 @@ export default function ListProprietario({ history }) {
     }
   }
 
+  async function filterCnpjCpf(e) {
+    if (e.target.value !== "") {
+      const response = await api.get(
+        `/proprietarios?cnpj_cpf=${e.target.value}`
+      );
+      setOwners(response.data.docs);
+    } else {
+      const response = await api.get("/proprietarios");
+      setOwners(response.data.docs);
+    }
+  }
+
   function pagePrevious() {
     if (numberPage === 1) return;
     const numberOfPages = numberPage - 1;
@@ -73,6 +85,13 @@ export default function ListProprietario({ history }) {
             type="text"
             name="nome"
             placeholder="Pesquisar por nome"
+          />
+
+          <input
+            onChange={filterCnpjCpf}
+            type="text"
+            name="nome"
+            placeholder="Pesquisar por CNPJ/CPF"
           />
         </Pesquisa>
         <Table>
