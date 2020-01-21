@@ -49,6 +49,16 @@ export default function ListLoja({ history }) {
     }
   }
 
+  async function filterCnpjCpf(e) {
+    if (e.target.value !== "") {
+      const response = await api.get(`/lojas?cnpj_cpf=${e.target.value}`);
+      setStores(response.data.docs);
+    } else {
+      const response = await api.get("/lojas");
+      setStores(response.data.docs);
+    }
+  }
+
   function pagePrevious() {
     if (numberPage === 1) return;
     const numberOfPages = numberPage - 1;
@@ -73,6 +83,12 @@ export default function ListLoja({ history }) {
             type="text"
             name="nome"
             placeholder="Pesquisar por nome"
+          />
+          <input
+            onChange={filterCnpjCpf}
+            type="text"
+            name="nome"
+            placeholder="Pesquisar por CNPJ/CPF"
           />
         </Pesquisa>
         <Table>
