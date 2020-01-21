@@ -75,7 +75,7 @@ export default function CadRestaurante({ history, match }) {
           <div>
             <Input name="nome" label="Nome do Restaurante *" />
             <Input name="proprietario" label="Nome do Proprietário *" />
-            <Input name="cnpj" label="CNPJ*" />
+            <Input name="cnpj" label="CNPJ/CPF *" />
             <Input name="endereco" label="Endereco*" />
             <Input name="bairro" label="Bairro *" />
             <Input name="cidade" label="Cidade *" />

@@ -49,6 +49,18 @@ export default function ListRestaurante({ history }) {
     }
   }
 
+  async function filterCnpjCpf(e) {
+    if (e.target.value !== "") {
+      const response = await api.get(
+        `/restaurantes?cnpj_cpf=${e.target.value}`
+      );
+      setRestaurants(response.data.docs);
+    } else {
+      const response = await api.get("/restaurantes");
+      setRestaurants(response.data.docs);
+    }
+  }
+
   function pagePrevious() {
     if (numberPage === 1) return;
     const numberOfPages = numberPage - 1;
@@ -74,6 +86,13 @@ export default function ListRestaurante({ history }) {
             name="nome"
             placeholder="Pesquisar por nome"
           />
+
+          <input
+            onChange={filterCnpjCpf}
+            type="text"
+            name="nome"
+            placeholder="Pesquisar por nome"
+          />
         </Pesquisa>
         <Table>
           <table>
@@ -81,7 +100,7 @@ export default function ListRestaurante({ history }) {
               <tr>
                 <th>Nome</th>
                 <th>Proprietário</th>
-                <th>CNPJ</th>
+                <th>CNPJ/CPF</th>
                 <th>CEP</th>
                 <th>Estado</th>
                 <th>Cidade</th>

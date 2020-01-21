@@ -80,7 +80,7 @@ export default function ListPosto({ history }) {
             <thead>
               <tr>
                 <th>Nome</th>
-                <th>CNPJ</th>
+                <th>CNPJ/CPF</th>
                 <th>CEP</th>
                 <th>Estado</th>
                 <th>Cidade</th>

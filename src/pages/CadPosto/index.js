@@ -73,7 +73,7 @@ export default function CadPosto({ history, match }) {
         <ContentForm>
           <div>
             <Input name="nome" label="Nome do Posto *" />
-            <Input name="cnpj" label="CNPJ*" />
+            <Input name="cnpj" label="CNPJ/CPF *" />
             <Input name="endereco" label="Endereco*" />
             <Input name="bairro" label="Bairro *" />
             <Input name="cidade" label="Cidade *" />

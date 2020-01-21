@@ -81,7 +81,7 @@ export default function ListLoja({ history }) {
               <tr>
                 <th>Nome</th>
                 <th>Proprietário</th>
-                <th>CNPJ</th>
+                <th>CNPJ/CPF</th>
                 <th>CEP</th>
                 <th>Estado</th>
                 <th>Cidade</th>

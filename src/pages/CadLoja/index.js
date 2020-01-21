@@ -75,8 +75,8 @@ export default function CadLoja({ history, match }) {
           <div>
             <Input name="nome" label="Nome da Loja *" />
             <Input name="proprietario" label="Nome do Proprietário *" />
-            <Input name="cnpj" label="CNPJ*" />
-            <Input name="endereco" label="Endereco*" />
+            <Input name="cnpj" label="CNPJ/CPF *" />
+            <Input name="endereco" label="Endereco *" />
             <Input name="bairro" label="Bairro *" />
             <Input name="cidade" label="Cidade *" />
           </div>

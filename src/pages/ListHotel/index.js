@@ -49,6 +49,16 @@ export default function ListHotel({ history }) {
     }
   }
 
+  async function filterCnpjCpf(e) {
+    if (e.target.value !== "") {
+      const response = await api.get(`/hotels?cnpj_cpf=${e.target.value}`);
+      setHotels(response.data.docs);
+    } else {
+      const response = await api.get("/hotels");
+      setHotels(response.data.docs);
+    }
+  }
+
   function pagePrevious() {
     if (numberPage === 1) return;
     const numberOfPages = numberPage - 1;
@@ -74,6 +84,12 @@ export default function ListHotel({ history }) {
             name="nome"
             placeholder="Pesquisar por nome"
           />
+          <input
+            onChange={filterCnpjCpf}
+            type="text"
+            name="nome"
+            placeholder="Pesquisar por CNPJ/CPF"
+          />
         </Pesquisa>
         <Table>
           <table>
@@ -81,7 +97,7 @@ export default function ListHotel({ history }) {
               <tr>
                 <th>Nome</th>
                 <th>Proprietário</th>
-                <th>CNPJ</th>
+                <th>CNPJ/CPF</th>
                 <th>CEP</th>
                 <th>Estado</th>
                 <th>Cidade</th>
