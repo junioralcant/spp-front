@@ -49,6 +49,16 @@ export default function ListPosto({ history }) {
     }
   }
 
+  async function filterCnpjCpf(e) {
+    if (e.target.value !== "") {
+      const response = await api.get(`/postos?cnpj_cpf=${e.target.value}`);
+      setGasStations(response.data.docs);
+    } else {
+      const response = await api.get("/postos");
+      setGasStations(response.data.docs);
+    }
+  }
+
   function pagePrevious() {
     if (numberPage === 1) return;
     const numberOfPages = numberPage - 1;
@@ -73,6 +83,13 @@ export default function ListPosto({ history }) {
             type="text"
             name="nome"
             placeholder="Pesquisar por nome"
+          />
+
+          <input
+            onChange={filterCnpjCpf}
+            type="text"
+            name="nome"
+            placeholder="Pesquisar por CNPJ/CPF"
           />
         </Pesquisa>
         <Table>
