@@ -106,9 +106,17 @@ export default function Sidebar() {
           <li>
             <Link to="/notarestaurante">Restaurante</Link>
           </li>
+        </Nav>
 
+        <Nav>
+          <li>
+            <strong>Conta Caixa</strong>
+          </li>
           <li>
             <Link to="/notafazenda">Fazenda</Link>
+          </li>
+          <li>
+            <Link to="/notasafraarroz">Safra Arroz</Link>
           </li>
         </Nav>
       </div>

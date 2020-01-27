@@ -9,7 +9,7 @@ import { colorStyle } from "../../styles/select";
 import { Container, ContentForm } from "../../styles/form";
 import api from "../../services/api";
 
-export default function CadNotaFazenda({ history, match }) {
+export default function CadNotaSafraArroz({ history, match }) {
   const [data, setData] = useState({});
   const [whoBoughts, setWhoBoughts] = useState();
   const [stores, setStores] = useState();
@@ -36,14 +36,20 @@ export default function CadNotaFazenda({ history, match }) {
 
   async function handlerSubmit(data) {
     if (!match.params.id) {
-      if (!data.total || !data.data || !selectWhoBoughts || !selectStores) {
+      if (
+        !data.total ||
+        !data.data ||
+        !selectWhoBoughts ||
+        !selectStores ||
+        data.tipoDePagamento
+      ) {
         toastr.error(`Preencha todos os campos obrigatórios (*)!
         `);
       } else {
         try {
           data.quemComprou = selectWhoBoughts;
           data.loja = selectStores;
-          await api.postOrPut("/notasfazendas", match.params.id, data);
+          await api.postOrPut("/notassafraarrozs", match.params.id, data);
           toastr.success(`Gasto Fazenda cadastrado com sucesso!
           `);
           setTimeout(() => history.go(0), 1000);
@@ -55,9 +61,9 @@ export default function CadNotaFazenda({ history, match }) {
       try {
         data.quemComprou = selectWhoBoughts;
         data.loja = selectStores;
-        await api.postOrPut("/notasfazendas", match.params.id, data);
+        await api.postOrPut("/notassafraarrozs", match.params.id, data);
         toastr.success(`Alteração feita com sucesso!`);
-        history.push("/notafazenda");
+        history.push("/notasafraarroz");
         setTimeout(() => history.go(0), 1000);
       } catch (error) {
         toastr.error(error.response.data.error);
@@ -70,7 +76,7 @@ export default function CadNotaFazenda({ history, match }) {
     async function loadData() {
       if (match.params.id) {
         const { id } = match.params;
-        const response = await api.get(`/notasfazendas/${id}`);
+        const response = await api.get(`/notassafraarrozs/${id}`);
 
         setData(response.data);
       }
@@ -123,7 +129,7 @@ export default function CadNotaFazenda({ history, match }) {
   }
 
   function canceled() {
-    history.push("/notafazenda");
+    history.push("/notasafraarroz");
     setTimeout(() => history.go(0), 100);
   }
 
@@ -136,7 +142,7 @@ export default function CadNotaFazenda({ history, match }) {
   return (
     <Container>
       <Form initialData={data} onSubmit={handlerSubmit}>
-        <h1>Cadastro de Nota Fazenda</h1>
+        <h1>Cadastro de Safra Arroz</h1>
         <ContentForm>
           <div>
             <div className="select">

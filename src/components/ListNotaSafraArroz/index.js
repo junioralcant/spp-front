@@ -15,48 +15,48 @@ import {
 } from "../../styles/list";
 import api from "../../services/api";
 
-export default function ListNotaFazenda({ history, match }) {
-  const [ranchNotes, setRanchNotes] = useState([]);
+export default function ListNotaSafraArroz({ history, match }) {
+  const [harvestNotes, setHarvest] = useState([]);
   const [numberPage, setNumberPage] = useState(1);
-  const [ranchNotesRest, setRanchNotesRest] = useState([]);
+  const [harvestNotesRest, setHarvestRest] = useState([]);
   const [dataMin, setDataMin] = useState("");
   const [dataMax, setDataMax] = useState("");
   const [total, setTotal] = useState(false);
 
   useEffect(() => {
-    async function loadRanchNotes(page = numberPage) {
-      const response = await api.get(`/notasfazendas?page=${page}`);
-      const { docs, ...restStores } = response.data;
-      setRanchNotes(response.data.docs);
-      setRanchNotesRest(restStores);
+    async function loadHarvestNotes(page = numberPage) {
+      const response = await api.get(`/notassafraarrozs?page=${page}`);
+      const { docs, ...restHarvest } = response.data;
+      setHarvest(response.data.docs);
+      setHarvestRest(restHarvest);
     }
 
-    loadRanchNotes();
+    loadHarvestNotes();
   }, [numberPage]);
 
   async function destroy(id) {
-    await api.delete(`/notasfazendas/${id}`);
-    const response = await api.get("/notasfazendas");
+    await api.delete(`/notassafraarrozs/${id}`);
+    const response = await api.get("/notassafraarrozs");
 
-    const { docs, ...restranchNotes } = response.data;
-    setRanchNotes(docs);
-    setRanchNotesRest(restranchNotes);
+    const { docs, ...restHarvestNotes } = response.data;
+    setHarvest(docs);
+    setHarvestRest(restHarvestNotes);
   }
 
   async function filterWhoBought(e) {
     if (e.target.value !== "") {
       const response = await api.get(
-        `/notasfazendas?nome_quem_comprou=${e.target.value}&limit_page=${ranchNotesRest.total}`
+        `/notassafraarrozs?nome_quem_comprou=${e.target.value}&limit_page=${harvestNotesRest.total}`
       );
-      const { docs, ...restStores } = response.data;
-      setRanchNotes(response.data.docs);
-      setRanchNotesRest(restStores);
+      const { docs, ...restHarvest } = response.data;
+      setHarvest(response.data.docs);
+      setHarvestRest(restHarvest);
       setTotal(true);
     } else {
-      const response = await api.get("/notasfazendas");
-      const { docs, ...restStores } = response.data;
-      setRanchNotes(response.data.docs);
-      setRanchNotesRest(restStores);
+      const response = await api.get("/notassafraarrozs");
+      const { docs, ...restHarvest } = response.data;
+      setHarvest(response.data.docs);
+      setHarvestRest(restHarvest);
       setTotal(false);
     }
   }
@@ -64,17 +64,17 @@ export default function ListNotaFazenda({ history, match }) {
   async function filterExpenseOn(e) {
     if (e.target.value !== "") {
       const response = await api.get(
-        `/notasfazendas?gastocom=${e.target.value}&limit_page=${ranchNotesRest.total}`
+        `/notassafraarrozs?gastocom=${e.target.value}&limit_page=${harvestNotesRest.total}`
       );
-      const { docs, ...restStores } = response.data;
-      setRanchNotes(response.data.docs);
-      setRanchNotesRest(restStores);
+      const { docs, ...restHarvest } = response.data;
+      setHarvest(response.data.docs);
+      setHarvestRest(restHarvest);
       setTotal(true);
     } else {
-      const response = await api.get("/notasfazendas");
-      const { docs, ...restStores } = response.data;
-      setRanchNotes(response.data.docs);
-      setRanchNotesRest(restStores);
+      const response = await api.get("/notassafraarrozs");
+      const { docs, ...restHarvest } = response.data;
+      setHarvest(response.data.docs);
+      setHarvestRest(restHarvest);
       setTotal(false);
     }
   }
@@ -82,17 +82,17 @@ export default function ListNotaFazenda({ history, match }) {
   async function filterNameStore(e) {
     if (e.target.value !== "") {
       const response = await api.get(
-        `/notasfazendas?nome_loja=${e.target.value}&limit_page=${ranchNotesRest.total}`
+        `/notassafraarrozs?nome_loja=${e.target.value}&limit_page=${harvestNotesRest.total}`
       );
-      const { docs, ...restStores } = response.data;
-      setRanchNotes(response.data.docs);
-      setRanchNotesRest(restStores);
+      const { docs, ...restHarvest } = response.data;
+      setHarvest(response.data.docs);
+      setHarvestRest(restHarvest);
       setTotal(true);
     } else {
-      const response = await api.get("/notasfazendas");
-      const { docs, ...restStores } = response.data;
-      setRanchNotes(response.data.docs);
-      setRanchNotesRest(restStores);
+      const response = await api.get("/notassafraarrozs");
+      const { docs, ...restHarvest } = response.data;
+      setHarvest(response.data.docs);
+      setHarvestRest(restHarvest);
       setTotal(false);
     }
   }
@@ -100,17 +100,17 @@ export default function ListNotaFazenda({ history, match }) {
   async function filterData() {
     if (dataMin !== "" || dataMax !== "") {
       const response = await api.get(
-        `/notasfazendas?data_min=${dataMin}&data_max=${dataMax}&limit_page=${ranchNotesRest.total}`
+        `/notassafraarrozs?data_min=${dataMin}&data_max=${dataMax}&limit_page=${harvestNotesRest.total}`
       );
-      const { docs, ...notesStoresRest } = response.data;
-      setRanchNotes(docs);
-      setRanchNotesRest(notesStoresRest);
+      const { docs, ...notesHasvestRest } = response.data;
+      setHarvest(docs);
+      setHarvestRest(notesHasvestRest);
       setTotal(true);
     } else {
-      const response = await api.get("/notasfazendas");
-      const { docs, ...notesStoresRest } = response.data;
-      setRanchNotes(docs);
-      setRanchNotesRest(notesStoresRest);
+      const response = await api.get("/notassafraarrozs");
+      const { docs, ...notesHasvestRest } = response.data;
+      setHarvest(docs);
+      setHarvestRest(notesHasvestRest);
       setTotal(false);
     }
   }
@@ -131,7 +131,7 @@ export default function ListNotaFazenda({ history, match }) {
   }
 
   // Soma os valores de todos os pedidos
-  const valorTotal = ranchNotes.reduce(
+  const valorTotal = harvestNotes.reduce(
     (valorTotal, valor) => valorTotal + valor.total,
     0
   );
@@ -143,7 +143,7 @@ export default function ListNotaFazenda({ history, match }) {
   }
 
   function pageNext() {
-    if (numberPage === ranchNotesRest.pages) return;
+    if (numberPage === harvestNotesRest.pages) return;
     const numberOfPages = numberPage + 1;
 
     setNumberPage(numberOfPages);
@@ -152,7 +152,7 @@ export default function ListNotaFazenda({ history, match }) {
   return (
     <ContainerList>
       <ContentList>
-        <h1>Gastos Fazenda</h1>
+        <h1>Gastos Safra Arroz</h1>
         <Pesquisa>
           <input
             onChange={filterWhoBought}
@@ -191,7 +191,7 @@ export default function ListNotaFazenda({ history, match }) {
                 <div>
                   <strong>
                     Quantidade:{" "}
-                    <small className="total">{ranchNotesRest.total}</small>
+                    <small className="total">{harvestNotesRest.total}</small>
                   </strong>
                   <strong className="total">
                     Valor total:{" "}
@@ -225,7 +225,7 @@ export default function ListNotaFazenda({ history, match }) {
               </tr>
             </thead>
             <tbody>
-              {ranchNotes.map(note => {
+              {harvestNotes.map(note => {
                 const dataNote = formatToTimeZone(note.data, "DD-MM-YYYY", {
                   timeZone: "Europe/Berlin"
                 });
@@ -241,7 +241,7 @@ export default function ListNotaFazenda({ history, match }) {
                     <td>{dataNote}</td>
                     <td>{note.total} R$</td>
                     <td>
-                      <Link to={`/notafazenda/${note._id}`}>
+                      <Link to={`/notasafraarroz/${note._id}`}>
                         <IoMdCreate />
                       </Link>
                       <Link
@@ -249,7 +249,7 @@ export default function ListNotaFazenda({ history, match }) {
                         onClick={() => {
                           if (
                             window.confirm(
-                              `Deseja excluir gasto com o(a)  ${
+                              `Deseja excluir gasto com o(a) ${
                                 !note.loja ? null : note.loja.nome
                               }`
                             )
@@ -270,13 +270,13 @@ export default function ListNotaFazenda({ history, match }) {
           <button onClick={pagePrevious}>Anterior</button>
           <Dados>
             <strong>
-              Quantidade de Notas: <small>{ranchNotesRest.total}</small>
+              Quantidade de Notas: <small>{harvestNotesRest.total}</small>
             </strong>
             <strong>
-              Número de páginas: <small>{ranchNotesRest.pages}</small>
+              Número de páginas: <small>{harvestNotesRest.pages}</small>
             </strong>
             <strong>
-              Página atual: <small>{ranchNotesRest.page}</small>
+              Página atual: <small>{harvestNotesRest.page}</small>
             </strong>
           </Dados>
           <button onClick={pageNext}>Próximo</button>
