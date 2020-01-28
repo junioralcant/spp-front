@@ -217,7 +217,7 @@ export default function CadNotaHotel({ history, match }) {
           <div>
             <Input name="valorUnitario" label="Valor Unitário *" />
             <Input name="quantidade" label="Quantidade *" />
-            <Input type="date" name="data" label="Data" />
+            <Input type="date" name="data" label="Data *" />
           </div>
         </ContentForm>
         <div className="buttons">

@@ -196,7 +196,7 @@ export default function CadNotaLoja({ history, match }) {
         <ContentForm>
           <div>
             <div className="select">
-              <span>Loja</span>
+              <span>Loja *</span>
               <Select
                 options={stores}
                 placeholder={optionsExistentsStores.name}
@@ -207,7 +207,7 @@ export default function CadNotaLoja({ history, match }) {
               />
             </div>
             <div className="select">
-              <span>Encarregado</span>
+              <span>Encarregado *</span>
               <Select
                 options={inCharges}
                 placeholder={optionsExistentsInCharges.name}
@@ -229,7 +229,7 @@ export default function CadNotaLoja({ history, match }) {
               />
             </div>
             <div className="select">
-              <span>Linha</span>
+              <span>Linha *</span>
               <Select
                 options={lines}
                 placeholder={optionsExistentsLines.name}
@@ -252,8 +252,8 @@ export default function CadNotaLoja({ history, match }) {
               label="Tipo de Pagamento *"
             />
             <Input name="observacao" label="Observação" />
-            <Input name="total" label="total" />
-            <Input type="date" name="data" label="Data" />
+            <Input name="total" label="Total *" />
+            <Input type="date" name="data" label="Data *" />
           </div>
         </ContentForm>
         <div className="buttons">

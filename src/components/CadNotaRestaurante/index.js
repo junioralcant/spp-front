@@ -214,9 +214,9 @@ export default function CadNotaRestaurante({ history, match }) {
           </div>
 
           <div>
-            <Input name="valorUnitario" label="Valor Unitário" />
-            <Input name="quantidade" label="Quantidade" />
-            <Input type="date" name="data" label="Data" />
+            <Input name="valorUnitario" label="Valor Unitário *" />
+            <Input name="quantidade" label="Quantidade *" />
+            <Input type="date" name="data" label="Data *" />
           </div>
         </ContentForm>
         <div className="buttons">
