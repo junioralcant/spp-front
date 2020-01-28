@@ -9,7 +9,7 @@ import { colorStyle } from "../../styles/select";
 import { Container, ContentForm } from "../../styles/form";
 import api from "../../services/api";
 
-export default function CadNotaSafraArroz({ history, match }) {
+export default function CadNotaDespesaDiversa({ history, match }) {
   const [data, setData] = useState({});
   const [whoBoughts, setWhoBoughts] = useState();
   const [stores, setStores] = useState();
@@ -49,8 +49,8 @@ export default function CadNotaSafraArroz({ history, match }) {
         try {
           data.quemComprou = selectWhoBoughts;
           data.loja = selectStores;
-          await api.postOrPut("/notassafraarrozs", match.params.id, data);
-          toastr.success(`Gasto Fazenda cadastrado com sucesso!
+          await api.postOrPut("/notasdespesasdiversas", match.params.id, data);
+          toastr.success(`Gasto com despsas cadastrado com sucesso!
           `);
           setTimeout(() => history.go(0), 1000);
         } catch (error) {
@@ -61,9 +61,9 @@ export default function CadNotaSafraArroz({ history, match }) {
       try {
         data.quemComprou = selectWhoBoughts;
         data.loja = selectStores;
-        await api.postOrPut("/notassafraarrozs", match.params.id, data);
+        await api.postOrPut("/notasdespesasdiversas", match.params.id, data);
         toastr.success(`Alteração feita com sucesso!`);
-        history.push("/notasafraarroz");
+        history.push("/notadespesadiversa");
         setTimeout(() => history.go(0), 1000);
       } catch (error) {
         toastr.error(error.response.data.error);
@@ -76,7 +76,7 @@ export default function CadNotaSafraArroz({ history, match }) {
     async function loadData() {
       if (match.params.id) {
         const { id } = match.params;
-        const response = await api.get(`/notassafraarrozs/${id}`);
+        const response = await api.get(`/notasdespesasdiversas/${id}`);
 
         setData(response.data);
       }
@@ -129,7 +129,7 @@ export default function CadNotaSafraArroz({ history, match }) {
   }
 
   function canceled() {
-    history.push("/notasafraarroz");
+    history.push("/notadespesadiversa");
     setTimeout(() => history.go(0), 100);
   }
 
@@ -142,7 +142,7 @@ export default function CadNotaSafraArroz({ history, match }) {
   return (
     <Container>
       <Form initialData={data} onSubmit={handlerSubmit}>
-        <h1>Cadastro de Safra Arroz</h1>
+        <h1>Cadastro de Despesa Diversa</h1>
         <ContentForm>
           <div>
             <div className="select">
