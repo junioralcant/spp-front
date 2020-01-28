@@ -36,7 +36,13 @@ export default function CadNotaFazenda({ history, match }) {
 
   async function handlerSubmit(data) {
     if (!match.params.id) {
-      if (!data.total || !data.data || !selectWhoBoughts || !selectStores) {
+      if (
+        !data.total ||
+        !data.data ||
+        !selectWhoBoughts ||
+        !selectStores ||
+        !data.tipoDePagamento
+      ) {
         toastr.error(`Preencha todos os campos obrigatórios (*)!
         `);
       } else {

@@ -63,7 +63,7 @@ export default function CadNotaPosto({ history, match }) {
         !data.quantidade ||
         !selectDrivers ||
         !selectGasStations ||
-        !selectVehicles
+        !data.tipoDePagamento
       ) {
         toastr.error(`Preencha todos os campos obrigatórios (*)!
         `);
@@ -195,7 +195,7 @@ export default function CadNotaPosto({ history, match }) {
         <ContentForm>
           <div>
             <div className="select">
-              <span>Posto</span>
+              <span>Posto *</span>
               <Select
                 options={gasStations}
                 placeholder={optionsExistentsGasStations.name}
@@ -206,7 +206,7 @@ export default function CadNotaPosto({ history, match }) {
               />
             </div>
             <div className="select">
-              <span>Motorista</span>
+              <span>Motorista *</span>
               <Select
                 options={drivers}
                 placeholder={optionsExistentsDrivers.name}
@@ -228,7 +228,7 @@ export default function CadNotaPosto({ history, match }) {
               />
             </div>
             <div className="select">
-              <span>Linha</span>
+              <span>Linha *</span>
               <Select
                 options={lines}
                 placeholder={optionsExistentsLines.name}
@@ -242,8 +242,8 @@ export default function CadNotaPosto({ history, match }) {
           </div>
 
           <div>
-            <Input name="valorUnitario" label="Valor Unitário" />
-            <Input name="quantidade" label="Quantidade" />
+            <Input name="valorUnitario" label="Valor Unitário *" />
+            <Input name="quantidade" label="Quantidade *" />
             <SelectUnform
               name="tipoDePagamento"
               options={pagamento}

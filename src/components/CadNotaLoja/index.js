@@ -58,7 +58,13 @@ export default function CadNotaLoja({ history, match }) {
 
   async function handlerSubmit(data) {
     if (!match.params.id) {
-      if (!data.total || !data.data || !selectInCharges || !selectStores) {
+      if (
+        !data.total ||
+        !data.data ||
+        !selectInCharges ||
+        !selectStores ||
+        !data.tipoDePagamento
+      ) {
         toastr.error(`Preencha todos os campos obrigatórios (*)!
         `);
       } else {
