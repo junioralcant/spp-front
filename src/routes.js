@@ -20,6 +20,7 @@ import ListPosto from "./pages/ListPosto";
 import ListRestaurante from "./pages/ListRestaurante";
 import ListVeiculo from "./pages/ListVeiculo";
 import ListProprietario from "./pages/ListProprietario";
+import ListCaixa from "./pages/ListCaixa";
 
 import DetailsFuncionario from "./pages/DetailsFuncionario";
 import DetailsHotel from "./pages/DetailsHotel";
@@ -88,6 +89,7 @@ const Routes = () => (
       <Route path="/notasafraarroz/:id" component={NotaSafraArroz} />
       <Route exact path="/notadespesadiversa" component={NotaDespesaDiversa} />
       <Route path="/notadespesadiversa/:id" component={NotaDespesaDiversa} />
+      <Route exact path="/caixa" component={ListCaixa} />
 
       {/* <PrivateRoute path="/" exact component={Main} />
       <PrivateRoute path="/financeiro" component={Financeiro} />

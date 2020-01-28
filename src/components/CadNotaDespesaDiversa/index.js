@@ -146,7 +146,7 @@ export default function CadNotaDespesaDiversa({ history, match }) {
         <ContentForm>
           <div>
             <div className="select">
-              <span>Loja</span>
+              <span>Loja *</span>
               <Select
                 options={stores}
                 placeholder={optionsExistentsStores.name}
