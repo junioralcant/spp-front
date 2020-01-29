@@ -154,6 +154,7 @@ export default function CadNotaPosto({ history, match }) {
       setSelectVehicles(optionsExistentsVehicles.id);
       setSelectLines(optionsExistentsLines.id);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     optionsExistentsDrivers.id,
     optionsExistentsGasStations.id,
