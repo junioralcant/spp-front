@@ -179,8 +179,8 @@ export default function CadNotaDespesaDiversa({ history, match }) {
               label="Tipo de Pagamento *"
             />
             <Input name="observacao" label="Observação" />
-            <Input name="total" label="Total" />
-            <Input type="date" name="data" label="Data" />
+            <Input name="total" label="Total *" />
+            <Input type="date" name="data" label="Data *" />
           </div>
         </ContentForm>
         <div className="buttons">

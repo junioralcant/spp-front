@@ -178,8 +178,8 @@ export default function CadNotaSafraArroz({ history, match }) {
 
           <div>
             <Input name="observacao" label="Observação" />
-            <Input name="total" label="Total" />
-            <Input type="date" name="data" label="Data" />
+            <Input name="total" label="Total *" />
+            <Input type="date" name="data" label="Data *" />
           </div>
         </ContentForm>
         <div className="buttons">

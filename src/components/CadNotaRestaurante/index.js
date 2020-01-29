@@ -51,7 +51,8 @@ export default function CadNotaRestaurante({ history, match }) {
         !data.valorUnitario ||
         !data.quantidade ||
         !selectInCharges ||
-        !selectRestaurant
+        !selectRestaurant ||
+        !data.tipoDePagamento
       ) {
         toastr.error(`Preencha todos os campos obrigatórios (*)!
         `);
@@ -172,7 +173,7 @@ export default function CadNotaRestaurante({ history, match }) {
         <ContentForm>
           <div>
             <div className="select">
-              <span>Restaurante</span>
+              <span>Restaurante *</span>
               <Select
                 options={restaurants}
                 placeholder={optionsExistentsRestaurants.name}
@@ -183,7 +184,7 @@ export default function CadNotaRestaurante({ history, match }) {
               />
             </div>
             <div className="select">
-              <span>Encarregado</span>
+              <span>Encarregado *</span>
               <Select
                 options={inCharges}
                 placeholder={optionsExistentsInCharges.name}
@@ -194,7 +195,7 @@ export default function CadNotaRestaurante({ history, match }) {
               />
             </div>
             <div className="select">
-              <span>Linha</span>
+              <span>Linha *</span>
               <Select
                 options={lines}
                 placeholder={optionsExistentsLines.name}
@@ -213,9 +214,9 @@ export default function CadNotaRestaurante({ history, match }) {
           </div>
 
           <div>
-            <Input name="valorUnitario" label="Valor Unitário" />
-            <Input name="quantidade" label="Quantidade" />
-            <Input type="date" name="data" label="Data" />
+            <Input name="valorUnitario" label="Valor Unitário *" />
+            <Input name="quantidade" label="Quantidade *" />
+            <Input type="date" name="data" label="Data *" />
           </div>
         </ContentForm>
         <div className="buttons">
