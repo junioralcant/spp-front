@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { formatToTimeZone } from "date-fns-timezone";
 
 import { Container, Content, Dados, Details, Button } from "./styles";
 import Sidebar from "../../components/Sidebar";
@@ -21,14 +20,6 @@ export default function DetailsHotel({ match, history }) {
       loadHotel();
     }
   }, [match.params]);
-
-  const birthDate = formatToTimeZone(hotel.dataNascimento, "DD-MM-YYYY", {
-    timeZone: "Europe/Berlin"
-  });
-
-  const admissionDate = formatToTimeZone(hotel.dataAdmissao, "DD-MM-YYYY", {
-    timeZone: "Europe/Berlin"
-  });
 
   return (
     <Container>
