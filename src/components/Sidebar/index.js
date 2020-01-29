@@ -13,6 +13,14 @@ export default function Sidebar() {
       <div>
         <Nav>
           <li>
+            <strong>Caixa</strong>
+          </li>
+          <li>
+            <Link to="/">Caixa</Link>
+          </li>
+        </Nav>
+        <Nav>
+          <li>
             <strong>Cadastro</strong>
           </li>
           <li>
