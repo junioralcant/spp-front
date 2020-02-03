@@ -132,6 +132,12 @@ export default function Sidebar() {
           <li>
             <Link to="/notadespesaroco">Despesas Roço</Link>
           </li>
+          <li>
+            <Link to="/notadespesafuncionario">Despesas Funcionário</Link>
+          </li>
+          <li>
+            <Link to="/notadespesaspp">Despesas Spp</Link>
+          </li>
         </Nav>
       </div>
       <Sair onClick={sair}>Sair</Sair>
