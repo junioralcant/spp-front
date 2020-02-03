@@ -5,7 +5,7 @@ import Sidebar from "../../components/Sidebar";
 import CadNotaDespesaDiversa from "../../components/CadNotaDespesaDiversa";
 import ListNotaDespesaDiversa from "../../components/ListNotaDespesaDiversa";
 
-export default function NotaHotel({ ...props }) {
+export default function NotaDespesaDiversa({ ...props }) {
   return (
     <Container>
       <Sidebar />
