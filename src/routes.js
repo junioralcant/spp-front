@@ -37,6 +37,7 @@ import NotaFazenda from "./pages/NotaFazenda";
 import NotaSafraArroz from "./pages/NotaSafraArroz";
 import NotaDespesaDiversa from "./pages/NotaDespesaDiversa";
 import NotaDespesaRoco from "./pages/NotaDespesaRoco";
+import NotaDespesaFuncionario from "./pages/NotaDespesaFuncionario";
 
 const Routes = () => (
   <BrowserRouter>
@@ -91,6 +92,15 @@ const Routes = () => (
       <Route path="/notadespesadiversa/:id" component={NotaDespesaDiversa} />
       <Route exact path="/notadespesaroco" component={NotaDespesaRoco} />
       <Route path="/notadespesaroco/:id" component={NotaDespesaRoco} />
+      <Route
+        exact
+        path="/notadespesafuncionario"
+        component={NotaDespesaFuncionario}
+      />
+      <Route
+        path="/notadespesafuncionario/:id"
+        component={NotaDespesaFuncionario}
+      />
       <Route exact path="/" component={ListCaixa} />
 
       {/* <PrivateRoute path="/" exact component={Main} />
