@@ -82,7 +82,7 @@ export default function ListLoja({ history }) {
             onChange={filterName}
             type="text"
             name="nome"
-            placeholder="Pesquisar por nome"
+            placeholder="Pesquisar por nome loja"
           />
           <input
             onChange={filterCnpjCpf}

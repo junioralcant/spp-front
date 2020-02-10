@@ -140,7 +140,7 @@ export default function ListNotaHotel({ history, match }) {
             onChange={filterName}
             type="text"
             name="nome"
-            placeholder="Pesquisar por nome"
+            placeholder="Pesquisar por nome hotel"
           />
           <input
             onChange={filterNameLine}

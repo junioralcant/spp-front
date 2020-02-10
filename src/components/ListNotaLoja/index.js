@@ -140,7 +140,7 @@ export default function ListNotaLoja({ history, match }) {
             onChange={filterName}
             type="text"
             name="nome"
-            placeholder="Pesquisar por loja"
+            placeholder="Pesquisar por nome loja"
           />
           <input
             onChange={filterNameLine}

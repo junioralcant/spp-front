@@ -82,7 +82,7 @@ export default function ListHotel({ history }) {
             onChange={filterName}
             type="text"
             name="nome"
-            placeholder="Pesquisar por nome"
+            placeholder="Pesquisar por nome hotel"
           />
           <input
             onChange={filterCnpjCpf}
