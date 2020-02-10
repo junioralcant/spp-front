@@ -17,6 +17,7 @@ export default function ListCaixa({ history }) {
   const [boxs, setBoxs] = useState([]);
   const [dataMin, setDataMin] = useState("");
   const [dataMax, setDataMax] = useState("");
+  const [typePay, setTypePay] = useState("");
 
   useEffect(() => {
     async function loadBoxs() {
@@ -31,7 +32,7 @@ export default function ListCaixa({ history }) {
   async function filterName(e) {
     if (e.target.value !== "" || dataMin !== "" || dataMax !== "") {
       const response = await api.get(
-        `/caixas?gasto_com=${e.target.value}&data_min=${dataMin}&data_max=${dataMax}`
+        `/caixas?gasto_com=${e.target.value}&tipo_pagamento=${typePay}&data_min=${dataMin}&data_max=${dataMax}`
       );
       setBoxs(response.data);
     } else {
@@ -41,6 +42,7 @@ export default function ListCaixa({ history }) {
   }
 
   async function filterTypePay(e) {
+    setTypePay(e.target.value);
     if (e.target.value !== "" || dataMin !== "" || dataMax !== "") {
       const response = await api.get(
         `/caixas?tipo_pagamento=${e.target.value}&data_min=${dataMin}&data_max=${dataMax}`
@@ -84,7 +86,7 @@ export default function ListCaixa({ history }) {
     0
   );
 
-  console.log(boxs);
+  console.log(typePay);
 
   return (
     <Container>
