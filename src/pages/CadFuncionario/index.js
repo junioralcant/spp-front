@@ -15,20 +15,7 @@ export default function CadFuncionario({ history, match }) {
 
   async function handlerSubmit(data) {
     if (!match.params.id) {
-      if (
-        !data.nome ||
-        !data.rg ||
-        !data.cpf ||
-        !data.dataNascimento ||
-        !data.dataAdmissao ||
-        !data.telefone ||
-        !data.endereco ||
-        !data.numeroCasa ||
-        !data.bairro ||
-        !data.cidade ||
-        !data.estado ||
-        !data.cep
-      ) {
+      if (!data.nome) {
         toastr.error(`Preencha todos os campos obrigatórios (*)!
         `);
       } else {
@@ -108,45 +95,41 @@ export default function CadFuncionario({ history, match }) {
           <div>
             <Input name="nome" label="Nome *" />
 
-            <Input name="rg" label="RG *" />
+            <Input name="rg" label="RG" />
 
-            <Input name="cpf" label="CPF *" />
+            <Input name="cpf" label="CPF" />
 
             <Input name="cnh" label="CNH" />
 
-            <Input
-              type="date"
-              name="dataNascimento"
-              label="Data Nascimento *"
-            />
+            <Input type="date" name="dataNascimento" label="Data Nascimento" />
 
-            <Input type="date" name="dataAdmissao" label="Data Admissão *" />
+            <Input type="date" name="dataAdmissao" label="Data Admissão" />
 
             <Input name="cargo" label="Cargo" />
 
-            <Input name="telefone" label="Telefone *" />
+            <Input name="telefone" label="Telefone" />
 
             <Input name="whatsapp" label="Whatsapp" />
 
             <Input name="email" type="email" label="Email" />
 
-            <Input name="endereco" label="Endereço *" />
+            <Input name="endereco" label="Endereço" />
           </div>
           <div>
-            <Input name="numeroCasa" label="Número Casa *" />
+            <Input name="numeroCasa" label="Número Casa" />
 
-            <Input name="bairro" label="Bairro *" />
+            <Input name="bairro" label="Bairro" />
 
-            <Input name="cidade" label="Cidade *" />
+            <Input name="cidade" label="Cidade" />
 
             <Select
               name="estado"
               options={estados}
               value={data.estado}
-              label="Estado *"
+              label="Estado"
             />
 
-            <Input name="cep" label="CEP *" />
+            <Input name="cep" label="CEP" />
 
             <Input name="salarioFixo" label="Salário Fixo" />
 
