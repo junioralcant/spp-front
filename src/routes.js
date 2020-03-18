@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import Home from "./pages/Home";
 import CadFuncionario from "./pages/CadFuncionario";
-import CadEncarregado from "./pages/CadEncarregado";
 import CadLinha from "./pages/CadLinha";
 import CadHotel from "./pages/CadHotel";
 import CadLoja from "./pages/CadLoja";
@@ -13,7 +12,6 @@ import CadProprietario from "./pages/CadProprietario";
 import CadVeiculo from "./pages/CadVeiculo";
 import ListFuncionario from "./pages/ListFuncionario";
 import ListLinha from "./pages/ListLinha";
-import ListEncarregado from "./pages/ListEncarregado";
 import ListHotel from "./pages/ListHotel";
 import ListLoja from "./pages/ListLoja";
 import ListPosto from "./pages/ListPosto";
@@ -46,8 +44,7 @@ const Routes = () => (
       <Route path="/home" component={Home} />
       <Route exact path="/cadfuncionario" component={CadFuncionario} />
       <Route path="/cadfuncionario/:id" component={CadFuncionario} />
-      <Route exact path="/cadencarregado" component={CadEncarregado} />
-      <Route path="/cadencarregado/:id" component={CadEncarregado} />
+
       <Route exact path="/cadlinha" component={CadLinha} />
       <Route path="/cadlinha/:id" component={CadLinha} />
       <Route exact path="/cadhotel" component={CadHotel} />
@@ -65,7 +62,6 @@ const Routes = () => (
       <Route path="/funcionario" component={ListFuncionario} />
       <Route path="/detailsfuncionario/:id" component={DetailsFuncionario} />
       <Route path="/linha" component={ListLinha} />
-      <Route path="/encarregado" component={ListEncarregado} />
       <Route path="/hotel" component={ListHotel} />
       <Route path="/detailshotel/:id" component={DetailsHotel} />
       <Route path="/loja" component={ListLoja} />
