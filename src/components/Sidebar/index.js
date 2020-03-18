@@ -26,9 +26,6 @@ export default function Sidebar() {
           <li>
             <Link to="/cadfuncionario">Cad Funcionario</Link>
           </li>
-          <li>
-            <Link to="/cadencarregado">Cad Encarregado</Link>
-          </li>
 
           <li>
             <Link to="/cadlinha">Cad Linha</Link>
@@ -67,9 +64,6 @@ export default function Sidebar() {
             <Link to="/linha">Linhas</Link>
           </li>
 
-          <li>
-            <Link to="/encarregado">Encarregados</Link>
-          </li>
           <li>
             <Link to="/hotel">Hotels</Link>
           </li>

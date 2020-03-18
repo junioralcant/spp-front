@@ -96,7 +96,7 @@ export default function ListLinha({ history }) {
                     <td>{line.nome}</td>
                     <td>{line.cidadeInicio}</td>
                     <td>{line.cidadeFim}</td>
-                    <td>{line.encarregado.nome}</td>
+                    <td>{line.funcionario.nome}</td>
                     <td>{line.qtdTratores}</td>
                     <td>{line.qtdTratoristas}</td>
                     <td>{line.qtdTrabalhadoresManual}</td>

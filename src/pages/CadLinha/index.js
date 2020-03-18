@@ -16,7 +16,7 @@ export default function CadLinha({ history, match }) {
 
   useEffect(() => {
     async function loadInCharge() {
-      const response = await api.get("/encarregados");
+      const response = await api.get("/funcionarios");
       setInCharges(response.data.docs);
     }
 
@@ -38,7 +38,7 @@ export default function CadLinha({ history, match }) {
         `);
       } else {
         try {
-          data.encarregado = selectIncharge;
+          data.funcionario = selectIncharge;
           await api.postOrPut("/linhas", match.params.id, data);
           toastr.success(`Linha cadastrado com sucesso!
           `);
@@ -49,7 +49,7 @@ export default function CadLinha({ history, match }) {
       }
     } else {
       try {
-        data.encarregado = selectIncharge;
+        data.funcionario = selectIncharge;
         await api.postOrPut("/linhas", match.params.id, data);
         toastr.success(`Alteração feita com sucesso!
         `);
@@ -76,13 +76,10 @@ export default function CadLinha({ history, match }) {
     }
   }, [match.params, match.params.id]);
 
-  const optionsExistents = [
-    data.encarregado != null && {
-      id: data.encarregado._id,
-      name: data.encarregado.nome
-    }
-  ];
-
+  const optionsExistents = data.funcionario != null && {
+    id: data.funcionario._id,
+    name: data.funcionario.nome
+  };
   function setInCharge(value) {
     setSelectIncharge(value);
   }
@@ -100,13 +97,9 @@ export default function CadLinha({ history, match }) {
 
               <Select
                 options={inCharges}
-                placeholder={optionsExistents.map(fun => {
-                  return fun.name;
-                })}
+                placeholder={optionsExistents.name}
                 styles={colorStyle}
-                getOptionLabel={incharge =>
-                  !incharge.funcionario ? null : incharge.funcionario.nome
-                }
+                getOptionLabel={incharge => (!incharge ? null : incharge.nome)}
                 getOptionValue={incharge => incharge._id}
                 onChange={value => setInCharge(value._id)}
               />
