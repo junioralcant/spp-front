@@ -103,9 +103,9 @@ export default function CadAdiantamento({ history, match }) {
     [data.data, match.params.id]
   );
 
-  const optionsExistentsLines = data.linha != null && {
-    id: data.linha._id,
-    name: data.linha.nome
+  const optionsExistentsLines = data != null && {
+    id: data._id,
+    name: data.linha
   };
   const optionsExistentsWhoBoughts = data.funcionario != null && {
     id: data.funcionario._id,
@@ -114,7 +114,7 @@ export default function CadAdiantamento({ history, match }) {
 
   useEffect(() => {
     if (match.params.id) {
-      setSelectLine(optionsExistentsLines.id);
+      setSelectLine(optionsExistentsLines.linha);
       setWhoBought(optionsExistentsWhoBoughts.id);
     }
   }, [match.params, optionsExistentsLines.id, optionsExistentsWhoBoughts.id]);
@@ -138,6 +138,8 @@ export default function CadAdiantamento({ history, match }) {
     { id: "Transferência", title: "Transferência" }
   ];
 
+  console.log(selectLine);
+
   return (
     <Container>
       <Form initialData={data} onSubmit={handlerSubmit}>
@@ -158,12 +160,12 @@ export default function CadAdiantamento({ history, match }) {
             <div className="select">
               <span>Linha</span>
               <Select
-                options={lines}
                 placeholder={optionsExistentsLines.name}
+                options={lines}
                 styles={colorStyle}
-                getOptionLabel={loja => loja.nome}
-                getOptionValue={loja => loja._id}
-                onChange={value => setLine(value._id)}
+                getOptionLabel={line => line.nome}
+                getOptionValue={line => line.nome}
+                onChange={value => setLine(value.nome)}
               />
             </div>
 

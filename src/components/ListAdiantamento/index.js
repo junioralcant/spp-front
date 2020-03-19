@@ -185,7 +185,7 @@ export default function ListAdiantamento({ history, match }) {
                     <td>
                       {!advace.funcionario ? null : advace.funcionario.nome}
                     </td>
-                    <td>{!advace.linha ? null : advace.linha.nome}</td>
+                    <td>{advace.linha}</td>
                     <td>{advace.destino}</td>
                     <td>{dataAdvace}</td>
                     <td>{advace.tipoDePagamento}</td>
