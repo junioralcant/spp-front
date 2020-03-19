@@ -54,15 +54,6 @@ export default function Sidebar() {
 
         <Nav>
           <li>
-            <strong>Adiantamento</strong>
-          </li>
-          <li>
-            <Link to="/adiantamento">Adiantamento</Link>
-          </li>
-        </Nav>
-
-        <Nav>
-          <li>
             <strong>Listagem</strong>
           </li>
           <li>
@@ -95,6 +86,15 @@ export default function Sidebar() {
 
           <li>
             <Link to="/veiculo">Veículos</Link>
+          </li>
+        </Nav>
+
+        <Nav>
+          <li>
+            <strong>Adiantamento</strong>
+          </li>
+          <li>
+            <Link to="/adiantamento">Adiantamento</Link>
           </li>
         </Nav>
 
