@@ -164,7 +164,8 @@ export default function ListCaixa({ history }) {
                       {(box.loja && box.loja.nome) ||
                         (box.posto && box.posto.nome) ||
                         (box.hotel && box.hotel.nome) ||
-                        (box.restaurante && box.restaurante.nome)}
+                        (box.restaurante && box.restaurante.nome) ||
+                        (box.funcionario && box.funcionario.nome)}
                     </td>
                     <td>{dataBox}</td>
                     <td>{box.tipoDePagamento}</td>
