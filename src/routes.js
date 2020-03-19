@@ -38,6 +38,8 @@ import NotaDespesaRoco from "./pages/NotaDespesaRoco";
 import NotaDespesaFuncionario from "./pages/NotaDespesaFuncionario";
 import NotaDespesaSpp from "./pages/NotaDespesaSpp";
 
+import Adiantamento from "./pages/Adiantamento";
+
 const Routes = () => (
   <BrowserRouter>
     <Switch>
@@ -101,6 +103,8 @@ const Routes = () => (
       <Route exact path="/notadespesaspp" component={NotaDespesaSpp} />
       <Route path="/notadespesaspp/:id" component={NotaDespesaSpp} />
       <Route exact path="/" component={ListCaixa} />
+      <Route exact path="/adiantamento" component={Adiantamento} />
+      <Route path="/adiantamento/:id" component={Adiantamento} />
 
       {/* <PrivateRoute path="/" exact component={Main} />
       <PrivateRoute path="/financeiro" component={Financeiro} />
