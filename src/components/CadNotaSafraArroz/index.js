@@ -167,16 +167,17 @@ export default function CadNotaSafraArroz({ history, match }) {
                 onChange={value => setWhoBought(value._id)}
               />
             </div>
+            <Input name="gastoCom" label="Gasto Com" />
             <Input name="tipoDeCompra" label="Tipo de Compra" />
+          </div>
+
+          <div>
             <SelectUnform
               name="tipoDePagamento"
               options={pagamento}
               value={data.tipoDePagamento}
               label="Tipo de Pagamento *"
             />
-          </div>
-
-          <div>
             <Input name="observacao" label="Observação" />
             <Input name="total" label="Total *" />
             <Input type="date" name="data" label="Data *" />

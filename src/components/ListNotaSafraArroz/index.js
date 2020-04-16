@@ -213,8 +213,9 @@ export default function ListNotaSafraArroz({ history, match }) {
           <table>
             <thead>
               <tr>
-                <th>Loja *</th>
+                <th>Loja</th>
                 <th>Quem Comprou</th>
+                <th>Gasto Com</th>
                 <th>Tipo de Compra</th>
                 <th>Tipo de Pagamento</th>
                 <th>Observação</th>
@@ -233,6 +234,7 @@ export default function ListNotaSafraArroz({ history, match }) {
                   <tr key={note._id}>
                     <td>{!note.loja ? null : note.loja.nome}</td>
                     <td>{!note.quemComprou ? null : note.quemComprou.nome}</td>
+                    <td>{note.gastoCom}</td>
                     <td>{note.tipoDeCompra}</td>
                     <td>{note.tipoDePagamento}</td>
                     <td>{note.observacao}</td>

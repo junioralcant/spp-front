@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { formatToTimeZone } from "date-fns-timezone";
+import print from "print-js";
 
 import api from "../../services/api";
 import SideBar from "../../components/Sidebar";
@@ -33,6 +34,18 @@ export default function ListCaixa({ history }) {
     if (e.target.value !== "" || dataMin !== "" || dataMax !== "") {
       const response = await api.get(
         `/caixas?gasto_com=${e.target.value}&tipo_pagamento=${typePay}&data_min=${dataMin}&data_max=${dataMax}`
+      );
+      setBoxs(response.data);
+    } else {
+      const response = await api.get("/caixas");
+      setBoxs(response.data);
+    }
+  }
+
+  async function filterNameNote(e) {
+    if (e.target.value !== "" || dataMin !== "" || dataMax !== "") {
+      const response = await api.get(
+        `/caixas?nome_nota=${e.target.value}&tipo_pagamento=${typePay}&data_min=${dataMin}&data_max=${dataMax}`
       );
       setBoxs(response.data);
     } else {
@@ -110,6 +123,13 @@ export default function ListCaixa({ history }) {
           />
 
           <input
+            onChange={filterNameNote}
+            type="text"
+            name="nome"
+            placeholder="Pesquisar tipo de despesa"
+          />
+
+          <input
             type="date"
             name="dataInicio"
             placeholder="Data início"
@@ -140,12 +160,36 @@ export default function ListCaixa({ history }) {
           >
             Atualizar
           </button>
+
+          <button
+            onClick={() =>
+              print({
+                printable: boxs,
+                properties: [
+                  "nome",
+                  { field: "nomeNota", displayName: "TipodeDespesa" },
+                  "tipoDePagamento",
+                  { field: "nomeLinha", displayName: "Linha" },
+                  "tipoDeCompra",
+                  "data",
+                  "total"
+                ],
+                type: "json",
+                header: `<h3 class="custom-h3">SPP CONSTRUTORA <span>Total: ${valorTotal} R$</span> </h3>`,
+                style: ".custom-h3 { color: red; } span {color: #000}"
+              })
+            }
+          >
+            Imprimir
+          </button>
         </Pesquisa>
+
         <Table>
           <table>
             <thead>
               <tr>
                 <th>Gasto Com</th>
+                <th>Tipo de Despesa</th>
                 <th>Data</th>
                 <th>Tipo de Pagamento</th>
                 <th>Linha</th>
@@ -167,6 +211,7 @@ export default function ListCaixa({ history }) {
                         (box.restaurante && box.restaurante.nome) ||
                         (box.funcionario && box.funcionario.nome)}
                     </td>
+                    <td>{box.nomeNota}</td>
                     <td>{dataBox}</td>
                     <td>{box.tipoDePagamento}</td>
                     <td>{!box.linha ? null : box.linha.nome}</td>

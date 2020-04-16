@@ -22,7 +22,7 @@ export default function CadNotaLoja({ history, match }) {
 
   useEffect(() => {
     async function loadInCharges() {
-      const response = await api.get("/encarregados");
+      const response = await api.get("/funcionarios");
       setInCharges(response.data.docs);
     }
 
