@@ -172,7 +172,7 @@ export default function ListCaixa({ history }) {
                   { field: "nomeLinha", displayName: "Linha" },
                   "tipoDeCompra",
                   "data",
-                  "total"
+                  { field: "total", displayName: "Total R$" }
                 ],
                 type: "json",
                 header: `<h3 class="custom-h3">SPP CONSTRUTORA <span>Total: ${valorTotal} R$</span> </h3>`,
