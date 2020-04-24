@@ -83,99 +83,102 @@ export default function ListVehicle({ history }) {
   }
 
   return (
-    <Container>
+    <>
       <SideBar />
-      <Content>
-        <h1>Veículos</h1>
-        <Pesquisa>
-          <input
-            onChange={filterModel}
-            type="text"
-            name="nome"
-            placeholder="Pesquisar por modelo"
-          />
 
-          <input
-            onChange={filterBoard}
-            type="text"
-            name="nome"
-            placeholder="Pesquisar por placa"
-          />
+      <Container>
+        <Content>
+          <h1>Veículos</h1>
+          <Pesquisa>
+            <input
+              onChange={filterModel}
+              type="text"
+              name="nome"
+              placeholder="Pesquisar por modelo"
+            />
 
-          <input
-            onChange={filterChassi}
-            type="text"
-            name="nome"
-            placeholder="Pesquisar por chassi"
-          />
-        </Pesquisa>
-        <Table>
-          <table>
-            <thead>
-              <tr>
-                <th>Tipo</th>
-                <th>Proprietário</th>
-                <th>Placa</th>
-                <th>Chassi</th>
-                <th>Número de Série</th>
-                <th>Status</th>
-                <th>Ano</th>
-                <th>Modelo</th>
-                <th>Ação</th>
-              </tr>
-            </thead>
-            <tbody>
-              {vehicles.map(vehicle => {
-                return (
-                  <tr key={vehicle._id}>
-                    <td>{vehicle.tipo}</td>
-                    <td>{vehicle.proprietario.nome}</td>
-                    <td>{vehicle.placa}</td>
-                    <td>{vehicle.chassi}</td>
-                    <td>{vehicle.numeroDeSerie}</td>
-                    <td>{vehicle.status}</td>
-                    <td>{vehicle.ano}</td>
-                    <td>{vehicle.modelo}</td>
-                    <td>
-                      <Link to={`/cadveiculo/${vehicle._id}`}>
-                        <IoMdCreate />
-                      </Link>
-                      <Link
-                        to="#"
-                        onClick={() => {
-                          if (
-                            window.confirm(
-                              `Deseja excluir o(a) veículo com placa ${vehicle.placa} ?`
+            <input
+              onChange={filterBoard}
+              type="text"
+              name="nome"
+              placeholder="Pesquisar por placa"
+            />
+
+            <input
+              onChange={filterChassi}
+              type="text"
+              name="nome"
+              placeholder="Pesquisar por chassi"
+            />
+          </Pesquisa>
+          <Table>
+            <table>
+              <thead>
+                <tr>
+                  <th>Tipo</th>
+                  <th>Proprietário</th>
+                  <th>Placa</th>
+                  <th>Chassi</th>
+                  <th>Número de Série</th>
+                  <th>Status</th>
+                  <th>Ano</th>
+                  <th>Modelo</th>
+                  <th>Ação</th>
+                </tr>
+              </thead>
+              <tbody>
+                {vehicles.map(vehicle => {
+                  return (
+                    <tr key={vehicle._id}>
+                      <td>{vehicle.tipo}</td>
+                      <td>{vehicle.proprietario.nome}</td>
+                      <td>{vehicle.placa}</td>
+                      <td>{vehicle.chassi}</td>
+                      <td>{vehicle.numeroDeSerie}</td>
+                      <td>{vehicle.status}</td>
+                      <td>{vehicle.ano}</td>
+                      <td>{vehicle.modelo}</td>
+                      <td>
+                        <Link to={`/cadveiculo/${vehicle._id}`}>
+                          <IoMdCreate />
+                        </Link>
+                        <Link
+                          to="#"
+                          onClick={() => {
+                            if (
+                              window.confirm(
+                                `Deseja excluir o(a) veículo com placa ${vehicle.placa} ?`
+                              )
                             )
-                          )
-                            destroy(vehicle._id);
-                        }}
-                      >
-                        <IoIosTrash />
-                      </Link>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </Table>
-        <Footer>
-          <button onClick={pagePrevious}>Anterior</button>
-          <Dados>
-            <strong>
-              Quantidade de Veículos: <small>{vehiclesRest.total}</small>
-            </strong>
-            <strong>
-              Número de páginas: <small>{vehiclesRest.pages}</small>
-            </strong>
-            <strong>
-              Página atual: <small>{vehiclesRest.page}</small>
-            </strong>
-          </Dados>
-          <button onClick={pageNext}>Próximo</button>
-        </Footer>
-      </Content>
-    </Container>
+                              destroy(vehicle._id);
+                          }}
+                        >
+                          <IoIosTrash />
+                        </Link>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </Table>
+          <Footer>
+            <button onClick={pagePrevious}>Anterior</button>
+            <Dados>
+              <strong>
+                Quantidade de Veículos: <small>{vehiclesRest.total}</small>
+              </strong>
+              <strong>
+                Número de páginas: <small>{vehiclesRest.pages}</small>
+              </strong>
+              <strong>
+                Página atual: <small>{vehiclesRest.page}</small>
+              </strong>
+            </Dados>
+            <button onClick={pageNext}>Próximo</button>
+          </Footer>
+        </Content>
+      </Container>
+    </>
   );
 }

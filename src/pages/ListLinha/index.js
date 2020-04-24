@@ -63,81 +63,84 @@ export default function ListLinha({ history }) {
   }
 
   return (
-    <Container>
+    <>
       <SideBar />
-      <Content>
-        <h1>Linhas</h1>
-        <Pesquisa>
-          <input
-            onChange={filterName}
-            type="text"
-            name="nome"
-            placeholder="Pesquisar por nome"
-          />
-        </Pesquisa>
-        <Table>
-          <table>
-            <thead>
-              <tr>
-                <th>Nome</th>
-                <th>Cidade Início</th>
-                <th>Cidade Fim</th>
-                <th>Encarregado</th>
-                <th>QTD Tratores</th>
-                <th>QTD Tratoristas</th>
-                <th>QTD Trabalhadores Manual</th>
-                <th>Ação</th>
-              </tr>
-            </thead>
-            <tbody>
-              {lines.map(line => {
-                return (
-                  <tr key={line._id}>
-                    <td>{line.nome}</td>
-                    <td>{line.cidadeInicio}</td>
-                    <td>{line.cidadeFim}</td>
-                    <td>{line.funcionario.nome}</td>
-                    <td>{line.qtdTratores}</td>
-                    <td>{line.qtdTratoristas}</td>
-                    <td>{line.qtdTrabalhadoresManual}</td>
-                    <td>
-                      <Link to={`/cadlinha/${line._id}`}>
-                        <IoMdCreate />
-                      </Link>
-                      <Link
-                        to="#"
-                        onClick={() => {
-                          if (
-                            window.confirm(`Deseja excluir o(a) ${line.nome}`)
-                          )
-                            destroy(line._id);
-                        }}
-                      >
-                        <IoIosTrash />
-                      </Link>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </Table>
-        <Footer>
-          <button onClick={pagePrevious}>Anterior</button>
-          <Dados>
-            <strong>
-              Quantidade de Linhas: <small>{linesRest.total}</small>
-            </strong>
-            <strong>
-              Número de páginas: <small>{linesRest.pages}</small>
-            </strong>
-            <strong>
-              Página atual: <small>{linesRest.page}</small>
-            </strong>
-          </Dados>
-          <button onClick={pageNext}>Próximo</button>
-        </Footer>
-      </Content>
-    </Container>
+
+      <Container>
+        <Content>
+          <h1>Linhas</h1>
+          <Pesquisa>
+            <input
+              onChange={filterName}
+              type="text"
+              name="nome"
+              placeholder="Pesquisar por nome"
+            />
+          </Pesquisa>
+          <Table>
+            <table>
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Cidade Início</th>
+                  <th>Cidade Fim</th>
+                  <th>Encarregado</th>
+                  <th>QTD Tratores</th>
+                  <th>QTD Tratoristas</th>
+                  <th>QTD Trabalhadores Manual</th>
+                  <th>Ação</th>
+                </tr>
+              </thead>
+              <tbody>
+                {lines.map(line => {
+                  return (
+                    <tr key={line._id}>
+                      <td>{line.nome}</td>
+                      <td>{line.cidadeInicio}</td>
+                      <td>{line.cidadeFim}</td>
+                      <td>{line.funcionario.nome}</td>
+                      <td>{line.qtdTratores}</td>
+                      <td>{line.qtdTratoristas}</td>
+                      <td>{line.qtdTrabalhadoresManual}</td>
+                      <td>
+                        <Link to={`/cadlinha/${line._id}`}>
+                          <IoMdCreate />
+                        </Link>
+                        <Link
+                          to="#"
+                          onClick={() => {
+                            if (
+                              window.confirm(`Deseja excluir o(a) ${line.nome}`)
+                            )
+                              destroy(line._id);
+                          }}
+                        >
+                          <IoIosTrash />
+                        </Link>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </Table>
+          <Footer>
+            <button onClick={pagePrevious}>Anterior</button>
+            <Dados>
+              <strong>
+                Quantidade de Linhas: <small>{linesRest.total}</small>
+              </strong>
+              <strong>
+                Número de páginas: <small>{linesRest.pages}</small>
+              </strong>
+              <strong>
+                Página atual: <small>{linesRest.page}</small>
+              </strong>
+            </Dados>
+            <button onClick={pageNext}>Próximo</button>
+          </Footer>
+        </Content>
+      </Container>
+    </>
   );
 }

@@ -73,98 +73,103 @@ export default function ListHotel({ history }) {
   }
 
   return (
-    <Container>
+    <>
       <SideBar />
-      <Content>
-        <h1>Hotels</h1>
-        <Pesquisa>
-          <input
-            onChange={filterName}
-            type="text"
-            name="nome"
-            placeholder="Pesquisar por nome hotel"
-          />
-          <input
-            onChange={filterCnpjCpf}
-            type="text"
-            name="nome"
-            placeholder="Pesquisar por CNPJ/CPF"
-          />
-        </Pesquisa>
-        <Table>
-          <table>
-            <thead>
-              <tr>
-                <th>Nome</th>
-                <th>Proprietário</th>
-                <th>CNPJ/CPF</th>
-                <th>CEP</th>
-                <th>Estado</th>
-                <th>Cidade</th>
-                <th>Bairro</th>
-                <th>Endereço</th>
-                <th>Número do Estabelecimento</th>
-                <th>Telefone</th>
-                <th>Whatsapp</th>
-                <th>Ação</th>
-              </tr>
-            </thead>
-            <tbody>
-              {hotels.map(hotel => {
-                return (
-                  <tr key={hotel._id}>
-                    <td>{hotel.nome}</td>
-                    <td>{hotel.proprietario}</td>
-                    <td>{hotel.cnpj}</td>
-                    <td>{hotel.cep}</td>
-                    <td>{hotel.estado}</td>
-                    <td>{hotel.cidade}</td>
-                    <td>{hotel.bairro}</td>
-                    <td>{hotel.endereco}</td>
-                    <td>{hotel.numeroCasa}</td>
-                    <td>{hotel.telefone}</td>
-                    <td>{hotel.whatsapp}</td>
-                    <td>
-                      <Link to={`/cadhotel/${hotel._id}`}>
-                        <IoMdCreate />
-                      </Link>
-                      <Link to={`/detailshotel/${hotel._id}`}>
-                        <IoMdAddCircleOutline />
-                      </Link>
-                      <Link
-                        to="#"
-                        onClick={() => {
-                          if (
-                            window.confirm(`Deseja excluir o(a) ${hotel.nome}`)
-                          )
-                            destroy(hotel._id);
-                        }}
-                      >
-                        <IoIosTrash />
-                      </Link>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </Table>
-        <Footer>
-          <button onClick={pagePrevious}>Anterior</button>
-          <Dados>
-            <strong>
-              Quantidade de Hotels: <small>{hotelsRest.total}</small>
-            </strong>
-            <strong>
-              Número de páginas: <small>{hotelsRest.pages}</small>
-            </strong>
-            <strong>
-              Página atual: <small>{hotelsRest.page}</small>
-            </strong>
-          </Dados>
-          <button onClick={pageNext}>Próximo</button>
-        </Footer>
-      </Content>
-    </Container>
+
+      <Container>
+        <Content>
+          <h1>Hotels</h1>
+          <Pesquisa>
+            <input
+              onChange={filterName}
+              type="text"
+              name="nome"
+              placeholder="Pesquisar por nome hotel"
+            />
+            <input
+              onChange={filterCnpjCpf}
+              type="text"
+              name="nome"
+              placeholder="Pesquisar por CNPJ/CPF"
+            />
+          </Pesquisa>
+          <Table>
+            <table>
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Proprietário</th>
+                  <th>CNPJ/CPF</th>
+                  <th>CEP</th>
+                  <th>Estado</th>
+                  <th>Cidade</th>
+                  <th>Bairro</th>
+                  <th>Endereço</th>
+                  <th>Número do Estabelecimento</th>
+                  <th>Telefone</th>
+                  <th>Whatsapp</th>
+                  <th>Ação</th>
+                </tr>
+              </thead>
+              <tbody>
+                {hotels.map(hotel => {
+                  return (
+                    <tr key={hotel._id}>
+                      <td>{hotel.nome}</td>
+                      <td>{hotel.proprietario}</td>
+                      <td>{hotel.cnpj}</td>
+                      <td>{hotel.cep}</td>
+                      <td>{hotel.estado}</td>
+                      <td>{hotel.cidade}</td>
+                      <td>{hotel.bairro}</td>
+                      <td>{hotel.endereco}</td>
+                      <td>{hotel.numeroCasa}</td>
+                      <td>{hotel.telefone}</td>
+                      <td>{hotel.whatsapp}</td>
+                      <td>
+                        <Link to={`/cadhotel/${hotel._id}`}>
+                          <IoMdCreate />
+                        </Link>
+                        <Link to={`/detailshotel/${hotel._id}`}>
+                          <IoMdAddCircleOutline />
+                        </Link>
+                        <Link
+                          to="#"
+                          onClick={() => {
+                            if (
+                              window.confirm(
+                                `Deseja excluir o(a) ${hotel.nome}`
+                              )
+                            )
+                              destroy(hotel._id);
+                          }}
+                        >
+                          <IoIosTrash />
+                        </Link>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </Table>
+          <Footer>
+            <button onClick={pagePrevious}>Anterior</button>
+            <Dados>
+              <strong>
+                Quantidade de Hotels: <small>{hotelsRest.total}</small>
+              </strong>
+              <strong>
+                Número de páginas: <small>{hotelsRest.pages}</small>
+              </strong>
+              <strong>
+                Página atual: <small>{hotelsRest.page}</small>
+              </strong>
+            </Dados>
+            <button onClick={pageNext}>Próximo</button>
+          </Footer>
+        </Content>
+      </Container>
+    </>
   );
 }

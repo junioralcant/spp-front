@@ -84,113 +84,116 @@ export default function ListFuncionario({ history }) {
   }
 
   return (
-    <Container>
+    <>
       <SideBar />
-      <Content>
-        <h1>Funcionários</h1>
-        <Pesquisa>
-          <input
-            onChange={filterName}
-            type="text"
-            name="nome"
-            placeholder="Pesquisar por nome"
-          />
-          <input
-            onChange={filterCpf}
-            type="text"
-            name="cpf"
-            placeholder="Pesquisar por cpf"
-          />
-          <input
-            onChange={filterRg}
-            type="text"
-            name="rg"
-            placeholder="Pesquisar por rg"
-          />
-        </Pesquisa>
-        <Table>
-          <table>
-            <thead>
-              <tr>
-                <th>Nome</th>
-                <th>RG</th>
-                <th>CPF</th>
-                <th>Data Nascimento</th>
-                <th>Salário Fixo</th>
-                <th>Cargo</th>
-                <th>Endereço</th>
-                <th>Cidade</th>
-                <th>Estado</th>
-                <th>Bairro</th>
-                <th>Telefone</th>
-                <th>Ação</th>
-              </tr>
-            </thead>
-            <tbody>
-              {employees.map(employee => {
-                const dataNascimento = formatToTimeZone(
-                  employee.dataNascimento,
-                  "DD-MM-YYYY",
-                  {
-                    timeZone: "Europe/Berlin"
-                  }
-                );
-                return (
-                  <tr key={employee._id}>
-                    <td>{employee.nome}</td>
-                    <td>{employee.rg}</td>
-                    <td>{employee.cpf}</td>
-                    <td>{dataNascimento}</td>
-                    <td>{employee.salarioFixo}</td>
-                    <td>{employee.cargo}</td>
-                    <td>{employee.endereco}</td>
-                    <td>{employee.cidade}</td>
-                    <td>{employee.estado}</td>
-                    <td>{employee.bairro}</td>
-                    <td>{employee.telefone}</td>
-                    <td>
-                      <Link to={`/cadfuncionario/${employee._id}`}>
-                        <IoMdCreate />
-                      </Link>
-                      <Link to={`/detailsfuncionario/${employee._id}`}>
-                        <IoMdAddCircleOutline />
-                      </Link>
-                      <Link
-                        to="#"
-                        onClick={() => {
-                          if (
-                            window.confirm(
-                              `Deseja excluir o(a) ${employee.nome}`
+
+      <Container>
+        <Content>
+          <h1>Funcionários</h1>
+          <Pesquisa>
+            <input
+              onChange={filterName}
+              type="text"
+              name="nome"
+              placeholder="Pesquisar por nome"
+            />
+            <input
+              onChange={filterCpf}
+              type="text"
+              name="cpf"
+              placeholder="Pesquisar por cpf"
+            />
+            <input
+              onChange={filterRg}
+              type="text"
+              name="rg"
+              placeholder="Pesquisar por rg"
+            />
+          </Pesquisa>
+          <Table>
+            <table>
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>RG</th>
+                  <th>CPF</th>
+                  <th>Data Nascimento</th>
+                  <th>Salário Fixo</th>
+                  <th>Cargo</th>
+                  <th>Endereço</th>
+                  <th>Cidade</th>
+                  <th>Estado</th>
+                  <th>Bairro</th>
+                  <th>Telefone</th>
+                  <th>Ação</th>
+                </tr>
+              </thead>
+              <tbody>
+                {employees.map(employee => {
+                  const dataNascimento = formatToTimeZone(
+                    employee.dataNascimento,
+                    "DD-MM-YYYY",
+                    {
+                      timeZone: "Europe/Berlin"
+                    }
+                  );
+                  return (
+                    <tr key={employee._id}>
+                      <td>{employee.nome}</td>
+                      <td>{employee.rg}</td>
+                      <td>{employee.cpf}</td>
+                      <td>{dataNascimento}</td>
+                      <td>{employee.salarioFixo}</td>
+                      <td>{employee.cargo}</td>
+                      <td>{employee.endereco}</td>
+                      <td>{employee.cidade}</td>
+                      <td>{employee.estado}</td>
+                      <td>{employee.bairro}</td>
+                      <td>{employee.telefone}</td>
+                      <td>
+                        <Link to={`/cadfuncionario/${employee._id}`}>
+                          <IoMdCreate />
+                        </Link>
+                        <Link to={`/detailsfuncionario/${employee._id}`}>
+                          <IoMdAddCircleOutline />
+                        </Link>
+                        <Link
+                          to="#"
+                          onClick={() => {
+                            if (
+                              window.confirm(
+                                `Deseja excluir o(a) ${employee.nome}`
+                              )
                             )
-                          )
-                            destroy(employee._id);
-                        }}
-                      >
-                        <IoIosTrash />
-                      </Link>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </Table>
-        <Footer>
-          <button onClick={pagePrevious}>Anterior</button>
-          <Dados>
-            <strong>
-              Quantidade de Funcionários: <small>{employeesRest.total}</small>
-            </strong>
-            <strong>
-              Número de páginas: <small>{employeesRest.pages}</small>
-            </strong>
-            <strong>
-              Página atual: <small>{employeesRest.page}</small>
-            </strong>
-          </Dados>
-          <button onClick={pageNext}>Próximo</button>
-        </Footer>
-      </Content>
-    </Container>
+                              destroy(employee._id);
+                          }}
+                        >
+                          <IoIosTrash />
+                        </Link>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </Table>
+          <Footer>
+            <button onClick={pagePrevious}>Anterior</button>
+            <Dados>
+              <strong>
+                Quantidade de Funcionários: <small>{employeesRest.total}</small>
+              </strong>
+              <strong>
+                Número de páginas: <small>{employeesRest.pages}</small>
+              </strong>
+              <strong>
+                Página atual: <small>{employeesRest.page}</small>
+              </strong>
+            </Dados>
+            <button onClick={pageNext}>Próximo</button>
+          </Footer>
+        </Content>
+      </Container>
+    </>
   );
 }

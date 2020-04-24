@@ -72,61 +72,66 @@ export default function CadProprietario({ history, match }) {
   ];
 
   return (
-    <Container>
+    <>
       <Sidebar />
-      <Form initialData={data} onSubmit={handlerSubmit}>
-        <Header>
-          <h1>Cadastro de Proprietário</h1>
-          {!match.params.id && (
-            <button onClick={() => history.push("/cadveiculo")}>Voltar</button>
-          )}
-        </Header>
-        <ContentForm>
-          <div>
-            <Input name="nome" label="Nome do Proprietário *" />
-            <Input name="cnpj" label="CNPJ/CPF *" />
-            <Input name="endereco" label="Endereco*" />
-            <Input name="bairro" label="Bairro *" />
-            <Input name="cidade" label="Cidade *" />
-            <Select
-              name="estado"
-              options={estados}
-              value={data.estado}
-              label="Estado"
-            />
-            <Input name="numeroCasa" label="Número *" />
+
+      <Container>
+        <Form initialData={data} onSubmit={handlerSubmit}>
+          <Header>
+            <h1>Cadastro de Proprietário</h1>
+            {!match.params.id && (
+              <button onClick={() => history.push("/cadveiculo")}>
+                Voltar
+              </button>
+            )}
+          </Header>
+          <ContentForm>
+            <div>
+              <Input name="nome" label="Nome do Proprietário *" />
+              <Input name="cnpj" label="CNPJ/CPF *" />
+              <Input name="endereco" label="Endereco*" />
+              <Input name="bairro" label="Bairro *" />
+              <Input name="cidade" label="Cidade *" />
+              <Select
+                name="estado"
+                options={estados}
+                value={data.estado}
+                label="Estado"
+              />
+              <Input name="numeroCasa" label="Número *" />
+            </div>
+            <div>
+              <Input name="cep" label="CEP *" />
+              <Input name="telefone" label="Telefone *" />
+              <Input name="whatsapp" label="Whatsapp" />
+              <Input name="agenciaBancaria" label="Agência Bancária" />
+
+              <Input name="contaBancaria" label="Conta Bancária" />
+
+              <Select
+                name="tipoConta"
+                options={accountType}
+                value={data.tipoConta}
+                label="Tipo de Conta"
+              />
+
+              <Input name="banco" label="Banco" />
+            </div>
+          </ContentForm>
+          <div className="buttons">
+            <button type="submit">Salvar</button>
+            {match.params.id && (
+              <button
+                onClick={() => history.push("/proprietario")}
+                className="canceled"
+                type="submit"
+              >
+                Cancelar
+              </button>
+            )}
           </div>
-          <div>
-            <Input name="cep" label="CEP *" />
-            <Input name="telefone" label="Telefone *" />
-            <Input name="whatsapp" label="Whatsapp" />
-            <Input name="agenciaBancaria" label="Agência Bancária" />
-
-            <Input name="contaBancaria" label="Conta Bancária" />
-
-            <Select
-              name="tipoConta"
-              options={accountType}
-              value={data.tipoConta}
-              label="Tipo de Conta"
-            />
-
-            <Input name="banco" label="Banco" />
-          </div>
-        </ContentForm>
-        <div className="buttons">
-          <button type="submit">Salvar</button>
-          {match.params.id && (
-            <button
-              onClick={() => history.push("/proprietario")}
-              className="canceled"
-              type="submit"
-            >
-              Cancelar
-            </button>
-          )}
-        </div>
-      </Form>
-    </Container>
+        </Form>
+      </Container>
+    </>
   );
 }

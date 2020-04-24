@@ -91,59 +91,62 @@ export default function CadVeiculo({ history, match }) {
   ];
 
   return (
-    <Container>
+    <>
       <Sidebar />
-      <Form initialData={data} onSubmit={handlerSubmit}>
-        <Header>
-          <h1>Cadastro de Veículo</h1>
-          <button onClick={() => history.push("/cadproprietario")}>
-            Cadastar proprietário
-          </button>
-        </Header>
 
-        <ContentForm>
-          <div>
-            <div className="select">
-              <span>Proprietário *</span>
-              <Select
-                options={owners}
-                placeholder={optionsExistents.name}
-                styles={colorStyle}
-                getOptionLabel={employee => employee.nome}
-                getOptionValue={employee => employee._id}
-                onChange={value => setOwner(value._id)}
-              />
-            </div>
-            <Input name="tipo" label="Tipo *" />
-            <SelectUnform
-              name="status"
-              options={status}
-              value={data.status}
-              label="Status"
-            />
-            <Input name="modelo" label="Modelo *" />
-          </div>
-
-          <div>
-            <Input name="ano" label="Ano *" />
-            <Input name="placa" label="Placa" />
-            <Input name="chassi" label="Chassi" />
-            <Input name="numeroDeSerie" label="Número de Série" />
-          </div>
-        </ContentForm>
-        <div className="buttons">
-          <button type="submit">Salvar</button>
-          {match.params.id && (
-            <button
-              onClick={() => history.push("/veiculo")}
-              className="canceled"
-              type="submit"
-            >
-              Cancelar
+      <Container>
+        <Form initialData={data} onSubmit={handlerSubmit}>
+          <Header>
+            <h1>Cadastro de Veículo</h1>
+            <button onClick={() => history.push("/cadproprietario")}>
+              Cadastar proprietário
             </button>
-          )}
-        </div>
-      </Form>
-    </Container>
+          </Header>
+
+          <ContentForm>
+            <div>
+              <div className="select">
+                <span>Proprietário *</span>
+                <Select
+                  options={owners}
+                  placeholder={optionsExistents.name}
+                  styles={colorStyle}
+                  getOptionLabel={employee => employee.nome}
+                  getOptionValue={employee => employee._id}
+                  onChange={value => setOwner(value._id)}
+                />
+              </div>
+              <Input name="tipo" label="Tipo *" />
+              <SelectUnform
+                name="status"
+                options={status}
+                value={data.status}
+                label="Status"
+              />
+              <Input name="modelo" label="Modelo *" />
+            </div>
+
+            <div>
+              <Input name="ano" label="Ano *" />
+              <Input name="placa" label="Placa" />
+              <Input name="chassi" label="Chassi" />
+              <Input name="numeroDeSerie" label="Número de Série" />
+            </div>
+          </ContentForm>
+          <div className="buttons">
+            <button type="submit">Salvar</button>
+            {match.params.id && (
+              <button
+                onClick={() => history.push("/veiculo")}
+                className="canceled"
+                type="submit"
+              >
+                Cancelar
+              </button>
+            )}
+          </div>
+        </Form>
+      </Container>
+    </>
   );
 }

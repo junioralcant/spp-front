@@ -85,50 +85,58 @@ export default function CadLinha({ history, match }) {
   }
 
   return (
-    <Container>
+    <>
       <Sidebar />
-      <Form initialData={data} onSubmit={handlerSubmit}>
-        <h1>Cadastro de Linha</h1>
-        <ContentForm>
-          <div>
-            <Input name="nome" label="Nome *" />
-            <div className="select">
-              <span>Encarregado *</span>
 
-              <Select
-                options={inCharges}
-                placeholder={optionsExistents.name}
-                styles={colorStyle}
-                getOptionLabel={incharge => (!incharge ? null : incharge.nome)}
-                getOptionValue={incharge => incharge._id}
-                onChange={value => setInCharge(value._id)}
+      <Container>
+        <Form initialData={data} onSubmit={handlerSubmit}>
+          <h1>Cadastro de Linha</h1>
+          <ContentForm>
+            <div>
+              <Input name="nome" label="Nome *" />
+              <div className="select">
+                <span>Encarregado *</span>
+
+                <Select
+                  options={inCharges}
+                  placeholder={optionsExistents.name}
+                  styles={colorStyle}
+                  getOptionLabel={incharge =>
+                    !incharge ? null : incharge.nome
+                  }
+                  getOptionValue={incharge => incharge._id}
+                  onChange={value => setInCharge(value._id)}
+                />
+              </div>
+              <Input name="cidadeInicio" label="Cidade Início *" />
+              <Input name="cidadeFim" label="Cidade Fim *" />
+            </div>
+            <div>
+              <Input name="qtdTratores" label="Quantidade de Tratores *" />
+              <Input
+                name="qtdTratoristas"
+                label="Quantidade de Tratoristas *"
+              />
+              <Input
+                name="qtdTrabalhadoresManual"
+                label="Quantidade de Trabalhadores Manual *"
               />
             </div>
-            <Input name="cidadeInicio" label="Cidade Início *" />
-            <Input name="cidadeFim" label="Cidade Fim *" />
+          </ContentForm>
+          <div className="buttons">
+            <button type="submit">Salvar</button>
+            {match.params.id && (
+              <button
+                onClick={() => history.push("/linha")}
+                className="canceled"
+                type="submit"
+              >
+                Cancelar
+              </button>
+            )}
           </div>
-          <div>
-            <Input name="qtdTratores" label="Quantidade de Tratores *" />
-            <Input name="qtdTratoristas" label="Quantidade de Tratoristas *" />
-            <Input
-              name="qtdTrabalhadoresManual"
-              label="Quantidade de Trabalhadores Manual *"
-            />
-          </div>
-        </ContentForm>
-        <div className="buttons">
-          <button type="submit">Salvar</button>
-          {match.params.id && (
-            <button
-              onClick={() => history.push("/linha")}
-              className="canceled"
-              type="submit"
-            >
-              Cancelar
-            </button>
-          )}
-        </div>
-      </Form>
-    </Container>
+        </Form>
+      </Container>
+    </>
   );
 }

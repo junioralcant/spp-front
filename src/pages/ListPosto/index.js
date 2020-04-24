@@ -73,99 +73,102 @@ export default function ListPosto({ history }) {
   }
 
   return (
-    <Container>
+    <>
       <SideBar />
-      <Content>
-        <h1>Postos</h1>
-        <Pesquisa>
-          <input
-            onChange={filterName}
-            type="text"
-            name="nome"
-            placeholder="Pesquisar por nome"
-          />
 
-          <input
-            onChange={filterCnpjCpf}
-            type="text"
-            name="nome"
-            placeholder="Pesquisar por CNPJ/CPF"
-          />
-        </Pesquisa>
-        <Table>
-          <table>
-            <thead>
-              <tr>
-                <th>Nome</th>
-                <th>CNPJ/CPF</th>
-                <th>CEP</th>
-                <th>Estado</th>
-                <th>Cidade</th>
-                <th>Bairro</th>
-                <th>Endereço</th>
-                <th>Número do Estabelecimento</th>
-                <th>Telefone</th>
-                <th>Whatsapp</th>
-                <th>Ação</th>
-              </tr>
-            </thead>
-            <tbody>
-              {gasStations.map(gasStation => {
-                return (
-                  <tr key={gasStation._id}>
-                    <td>{gasStation.nome}</td>
-                    <td>{gasStation.cnpj}</td>
-                    <td>{gasStation.cep}</td>
-                    <td>{gasStation.estado}</td>
-                    <td>{gasStation.cidade}</td>
-                    <td>{gasStation.bairro}</td>
-                    <td>{gasStation.endereco}</td>
-                    <td>{gasStation.numeroCasa}</td>
-                    <td>{gasStation.telefone}</td>
-                    <td>{gasStation.whatsapp}</td>
-                    <td>
-                      <Link to={`/cadposto/${gasStation._id}`}>
-                        <IoMdCreate />
-                      </Link>
-                      <Link to={`/detailsposto/${gasStation._id}`}>
-                        <IoMdAddCircleOutline />
-                      </Link>
-                      <Link
-                        to="#"
-                        onClick={() => {
-                          if (
-                            window.confirm(
-                              `Deseja excluir o(a) ${gasStation.nome}`
+      <Container>
+        <Content>
+          <h1>Postos</h1>
+          <Pesquisa>
+            <input
+              onChange={filterName}
+              type="text"
+              name="nome"
+              placeholder="Pesquisar por nome"
+            />
+
+            <input
+              onChange={filterCnpjCpf}
+              type="text"
+              name="nome"
+              placeholder="Pesquisar por CNPJ/CPF"
+            />
+          </Pesquisa>
+          <Table>
+            <table>
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>CNPJ/CPF</th>
+                  <th>CEP</th>
+                  <th>Estado</th>
+                  <th>Cidade</th>
+                  <th>Bairro</th>
+                  <th>Endereço</th>
+                  <th>Número do Estabelecimento</th>
+                  <th>Telefone</th>
+                  <th>Whatsapp</th>
+                  <th>Ação</th>
+                </tr>
+              </thead>
+              <tbody>
+                {gasStations.map(gasStation => {
+                  return (
+                    <tr key={gasStation._id}>
+                      <td>{gasStation.nome}</td>
+                      <td>{gasStation.cnpj}</td>
+                      <td>{gasStation.cep}</td>
+                      <td>{gasStation.estado}</td>
+                      <td>{gasStation.cidade}</td>
+                      <td>{gasStation.bairro}</td>
+                      <td>{gasStation.endereco}</td>
+                      <td>{gasStation.numeroCasa}</td>
+                      <td>{gasStation.telefone}</td>
+                      <td>{gasStation.whatsapp}</td>
+                      <td>
+                        <Link to={`/cadposto/${gasStation._id}`}>
+                          <IoMdCreate />
+                        </Link>
+                        <Link to={`/detailsposto/${gasStation._id}`}>
+                          <IoMdAddCircleOutline />
+                        </Link>
+                        <Link
+                          to="#"
+                          onClick={() => {
+                            if (
+                              window.confirm(
+                                `Deseja excluir o(a) ${gasStation.nome}`
+                              )
                             )
-                          )
-                            destroy(gasStation._id);
-                        }}
-                      >
-                        <IoIosTrash />
-                      </Link>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </Table>
-        <Footer>
-          <button onClick={pagePrevious}>Anterior</button>
-          <Dados>
-            <strong>
-              Quantidade de Postos: <small>{gasStationsRest.total}</small>
-            </strong>
-            <strong>
-              Número de páginas: <small>{gasStationsRest.pages}</small>
-            </strong>
-            <strong>
-              Página atual: <small>{gasStationsRest.page}</small>
-            </strong>
-          </Dados>
-          <button onClick={pageNext}>Próximo</button>
-        </Footer>
-      </Content>
-    </Container>
+                              destroy(gasStation._id);
+                          }}
+                        >
+                          <IoIosTrash />
+                        </Link>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </Table>
+          <Footer>
+            <button onClick={pagePrevious}>Anterior</button>
+            <Dados>
+              <strong>
+                Quantidade de Postos: <small>{gasStationsRest.total}</small>
+              </strong>
+              <strong>
+                Número de páginas: <small>{gasStationsRest.pages}</small>
+              </strong>
+              <strong>
+                Página atual: <small>{gasStationsRest.page}</small>
+              </strong>
+            </Dados>
+            <button onClick={pageNext}>Próximo</button>
+          </Footer>
+        </Content>
+      </Container>
+    </>
   );
 }

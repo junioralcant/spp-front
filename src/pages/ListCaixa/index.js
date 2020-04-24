@@ -13,6 +13,7 @@ import {
   Footer,
   Dados
 } from "../../styles/list";
+import { string } from "postcss-selector-parser";
 
 export default function ListCaixa({ history }) {
   const [boxs, setBoxs] = useState([]);
@@ -102,135 +103,138 @@ export default function ListCaixa({ history }) {
   console.log(typePay);
 
   return (
-    <Container>
+    <>
       <SideBar />
-      <Content>
-        <h1>Caixa</h1>
 
-        <Pesquisa>
-          <input
-            onChange={filterName}
-            type="text"
-            name="nome"
-            placeholder="Pesquisar gasto com"
-          />
+      <Container>
+        <Content>
+          <h1>Caixa</h1>
 
-          <input
-            onChange={filterTypePay}
-            type="text"
-            name="nome"
-            placeholder="Pesquisar tipo de pagamento"
-          />
+          <Pesquisa>
+            <input
+              onChange={filterName}
+              type="text"
+              name="nome"
+              placeholder="Pesquisar gasto com"
+            />
 
-          <input
-            onChange={filterNameNote}
-            type="text"
-            name="nome"
-            placeholder="Pesquisar tipo de despesa"
-          />
+            <input
+              onChange={filterTypePay}
+              type="text"
+              name="nome"
+              placeholder="Pesquisar tipo de pagamento"
+            />
 
-          <input
-            type="date"
-            name="dataInicio"
-            placeholder="Data início"
-            onChange={filterDataMin}
-          />
-          <input
-            type="date"
-            name="dataFim"
-            placeholder="Data fim"
-            onChange={filterDataMax}
-          />
-          <button onClick={filterData}>Pequisar</button>
+            <input
+              onChange={filterNameNote}
+              type="text"
+              name="nome"
+              placeholder="Pesquisar tipo de despesa"
+            />
 
-          <Total>
-            <div>
+            <input
+              type="date"
+              name="dataInicio"
+              placeholder="Data início"
+              onChange={filterDataMin}
+            />
+            <input
+              type="date"
+              name="dataFim"
+              placeholder="Data fim"
+              onChange={filterDataMax}
+            />
+            <button onClick={filterData}>Pequisar</button>
+
+            <Total>
+              <div>
+                <strong>
+                  Quantidade: <small className="total">{boxs.length}</small>
+                </strong>
+                <strong className="total">
+                  Valor total: <small className="total">{valorTotal} R$</small>
+                </strong>
+              </div>
+            </Total>
+            <button
+              onClick={() => {
+                history.go(0);
+              }}
+            >
+              Atualizar
+            </button>
+
+            <button
+              onClick={() =>
+                print({
+                  printable: boxs,
+                  properties: [
+                    "nome",
+                    { field: "nomeNota", displayName: "TipodeDespesa" },
+                    "tipoDePagamento",
+                    { field: "nomeLinha", displayName: "Linha" },
+                    "tipoDeCompra",
+                    "data",
+                    { field: "total", displayName: "Total R$" }
+                  ],
+                  type: "json",
+                  header: `<h3 class="custom-h3">SPP CONSTRUTORA <span>Total: ${valorTotal} R$</span> </h3>`,
+                  style: ".custom-h3 { color: red; } span {color: #000}"
+                })
+              }
+            >
+              Imprimir
+            </button>
+          </Pesquisa>
+
+          <Table>
+            <table>
+              <thead>
+                <tr>
+                  <th>Gasto Com</th>
+                  <th>Tipo de Despesa</th>
+                  <th>Data</th>
+                  <th>Tipo de Pagamento</th>
+                  <th>Linha</th>
+                  <th>Tipo de compra</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                {boxs.map(box => {
+                  const dataBox = formatToTimeZone(box.data, "DD-MM-YYYY", {
+                    timeZone: "Europe/Berlin"
+                  });
+                  return (
+                    <tr key={box._id}>
+                      <td>
+                        {(box.loja && box.loja.nome) ||
+                          (box.posto && box.posto.nome) ||
+                          (box.hotel && box.hotel.nome) ||
+                          (box.restaurante && box.restaurante.nome) ||
+                          (box.funcionario && box.funcionario.nome)}
+                      </td>
+                      <td>{box.nomeNota}</td>
+                      <td>{dataBox}</td>
+                      <td>{box.tipoDePagamento}</td>
+                      <td>{!box.linha ? null : box.linha.nome}</td>
+                      <td>{box.tipoDeCompra}</td>
+                      <td>{box.total} R$</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </Table>
+          <Footer>
+            <Dados>
               <strong>
-                Quantidade: <small className="total">{boxs.length}</small>
+                Quantidade de Registro: <small>{boxs.length}</small>
               </strong>
-              <strong className="total">
-                Valor total: <small className="total">{valorTotal} R$</small>
-              </strong>
-            </div>
-          </Total>
-          <button
-            onClick={() => {
-              history.go(0);
-            }}
-          >
-            Atualizar
-          </button>
-
-          <button
-            onClick={() =>
-              print({
-                printable: boxs,
-                properties: [
-                  "nome",
-                  { field: "nomeNota", displayName: "TipodeDespesa" },
-                  "tipoDePagamento",
-                  { field: "nomeLinha", displayName: "Linha" },
-                  "tipoDeCompra",
-                  "data",
-                  { field: "total", displayName: "Total R$" }
-                ],
-                type: "json",
-                header: `<h3 class="custom-h3">SPP CONSTRUTORA <span>Total: ${valorTotal} R$</span> </h3>`,
-                style: ".custom-h3 { color: red; } span {color: #000}"
-              })
-            }
-          >
-            Imprimir
-          </button>
-        </Pesquisa>
-
-        <Table>
-          <table>
-            <thead>
-              <tr>
-                <th>Gasto Com</th>
-                <th>Tipo de Despesa</th>
-                <th>Data</th>
-                <th>Tipo de Pagamento</th>
-                <th>Linha</th>
-                <th>Tipo de compra</th>
-                <th>Total</th>
-              </tr>
-            </thead>
-            <tbody>
-              {boxs.map(box => {
-                const dataBox = formatToTimeZone(box.data, "DD-MM-YYYY", {
-                  timeZone: "Europe/Berlin"
-                });
-                return (
-                  <tr key={box._id}>
-                    <td>
-                      {(box.loja && box.loja.nome) ||
-                        (box.posto && box.posto.nome) ||
-                        (box.hotel && box.hotel.nome) ||
-                        (box.restaurante && box.restaurante.nome) ||
-                        (box.funcionario && box.funcionario.nome)}
-                    </td>
-                    <td>{box.nomeNota}</td>
-                    <td>{dataBox}</td>
-                    <td>{box.tipoDePagamento}</td>
-                    <td>{!box.linha ? null : box.linha.nome}</td>
-                    <td>{box.tipoDeCompra}</td>
-                    <td>{box.total} R$</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </Table>
-        <Footer>
-          <Dados>
-            <strong>
-              Quantidade de Registro: <small>{boxs.length}</small>
-            </strong>
-          </Dados>
-        </Footer>
-      </Content>
-    </Container>
+            </Dados>
+          </Footer>
+        </Content>
+      </Container>
+    </>
   );
 }
